@@ -219,14 +219,14 @@ function NetworkCanvas() {
 
 /* ── Ticker data ── */
 const TICKER_ITEMS = [
-  { icon: '\u{1F6E1}\uFE0F', text: 'Certifi\u00e9 IP40' },
-  { icon: '\u{1F321}\uFE0F', text: '-40\u00b0C \u00e0 +75\u00b0C' },
-  { icon: '\u{1F3C5}', text: 'Garantie 3 ans' },
-  { icon: '\u{1F3A7}', text: 'Support 24/7' },
-  { icon: '\u{1F4E6}', text: '300 000+ unit\u00e9s/an' },
-  { icon: '\u2705', text: 'CE | FCC | UL' },
-  { icon: '\u{1F310}', text: '6 langues disponibles' },
-  { icon: '\u26A1', text: 'Livraison rapide' },
+  { icon: '🛡️', text: 'Certifié IP40' },
+  { icon: '🌡️', text: '-40°C à +75°C' },
+  { icon: '🏅', text: 'Garantie 3 ans' },
+  { icon: '🎧', text: 'Support 24/7' },
+  { icon: '📦', text: '300 000+ unités/an' },
+  { icon: '✅', text: 'CE | FCC | UL' },
+  { icon: '🌐', text: '6 langues disponibles' },
+  { icon: '⚡', text: 'Livraison rapide' },
 ];
 
 /* ── HeroSection ── */

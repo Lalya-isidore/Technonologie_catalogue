@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import { ArrowRight, Clock, FileText } from 'lucide-react';
 
 const TRUST_PILLS = [
-  { label: 'R\u00e9ponse sous 24h', color: '#22c55e' },
+  { label: 'Réponse sous 24h', color: '#22c55e' },
   { label: 'Devis gratuit', color: '#f97316' },
   { label: 'Sans engagement', color: '#38bdf8' },
   { label: 'Support 7j/7', color: '#22c55e' },
@@ -82,7 +82,7 @@ export function CtaSection() {
             style={{ color: '#38bdf8', letterSpacing: '3px', animationDelay: '0.1s' }}
           >
             <span className="w-7 h-px opacity-60" style={{ background: '#38bdf8' }} />
-            Experts \u00e0 votre \u00e9coute
+            Experts à votre écoute
           </div>
 
           <h2
@@ -90,14 +90,14 @@ export function CtaSection() {
             style={{ fontSize: 'clamp(28px, 3.5vw, 44px)', letterSpacing: '-0.5px', animationDelay: '0.2s' }}
           >
             Besoin d&apos;un devis<br />
-            <span style={{ color: '#38bdf8' }}>personnalis\u00e9 ?</span>
+            <span style={{ color: '#38bdf8' }}>personnalisé ?</span>
           </h2>
 
           <p
             className="cta-fade-up text-[15px] leading-[1.65] max-w-[500px] mb-8"
             style={{ color: '#94a3b8', animationDelay: '0.3s' }}
           >
-            Notre \u00e9quipe d&apos;experts vous accompagne dans le choix de la solution r\u00e9seau industrielle adapt\u00e9e \u00e0 vos besoins. R\u00e9ponse sous 24h, devis gratuit et sans engagement.
+            Notre équipe d&apos;experts vous accompagne dans le choix de la solution réseau industrielle adaptée à vos besoins. Réponse sous 24h, devis gratuit et sans engagement.
           </p>
 
           {/* Trust pills */}

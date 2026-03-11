@@ -35,23 +35,23 @@ const ADVANTAGES: Advantage[] = [
   {
     num: '02',
     icon: Thermometer,
-    badge: '-40\u00b0C vs -10\u00b0C',
-    title: '-40\u00b0C \u00e0 +75\u00b0C',
-    desc: 'Plage de temp\u00e9rature \u00e9tendue l\u00e0 o\u00f9 les concurrents se limitent \u00e0 -10\u00b0C / +60\u00b0C. Op\u00e9rationnel en conditions extr\u00eames.',
+    badge: '-40°C vs -10°C',
+    title: '-40°C à +75°C',
+    desc: 'Plage de température étendue là où les concurrents se limitent à -10°C / +60°C. Opérationnel en conditions extrêmes.',
     bars: [
-      { label: 'TSF', val: '-40\u00b0C', pct: 92, type: 'tsf' },
-      { label: 'Conc.', val: '-10\u00b0C', pct: 40, type: 'comp' },
+      { label: 'TSF', val: '-40°C', pct: 92, type: 'tsf' },
+      { label: 'Conc.', val: '-10°C', pct: 40, type: 'comp' },
     ],
   },
   {
     num: '03',
     icon: Monitor,
     badge: 'Alu HR vs Standard',
-    title: 'Bo\u00eetier Aluminium',
-    desc: 'Alliage aluminium haute r\u00e9sistance contre les coques m\u00e9tal standard de la concurrence. Meilleure dissipation thermique.',
+    title: 'Boîtier Aluminium',
+    desc: 'Alliage aluminium haute résistance contre les coques métal standard de la concurrence. Meilleure dissipation thermique.',
     bars: [
       { label: 'TSF', val: 'Alu HR', pct: 88, type: 'tsf' },
-      { label: 'Conc.', val: 'M\u00e9tal', pct: 52, type: 'comp' },
+      { label: 'Conc.', val: 'Métal', pct: 52, type: 'comp' },
     ],
   },
   {
@@ -59,10 +59,10 @@ const ADVANTAGES: Advantage[] = [
     icon: Radio,
     badge: '9-60V vs 12-48V',
     title: 'DC 9~60V',
-    desc: "Plage d'alimentation \u00e9largie (9-60V) vs 12-48V chez les concurrents. Plus de flexibilit\u00e9 terrain, moins de contraintes d'installation.",
+    desc: "Plage d'alimentation élargie (9-60V) vs 12-48V chez les concurrents. Plus de flexibilité terrain, moins de contraintes d'installation.",
     bars: [
-      { label: 'TSF', val: '9\u201360V', pct: 90, type: 'tsf' },
-      { label: 'Conc.', val: '12\u201348V', pct: 60, type: 'comp' },
+      { label: 'TSF', val: '9–60V', pct: 90, type: 'tsf' },
+      { label: 'Conc.', val: '12–48V', pct: 60, type: 'comp' },
     ],
   },
   {
@@ -70,10 +70,10 @@ const ADVANTAGES: Advantage[] = [
     icon: Award,
     badge: '3 ans',
     title: 'Garantie 3 ans',
-    desc: 'Garantie constructeur de 3 ans sur tous les produits avec remplacement prioritaire. Au-del\u00e0 des 1 \u00e0 2 ans standards du march\u00e9.',
+    desc: 'Garantie constructeur de 3 ans sur tous les produits avec remplacement prioritaire. Au-delà des 1 à 2 ans standards du marché.',
     bars: [
       { label: 'TSF', val: '3 ans', pct: 100, type: 'tsf' },
-      { label: 'Conc.', val: '1\u20132 ans', pct: 55, type: 'comp' },
+      { label: 'Conc.', val: '1–2 ans', pct: 55, type: 'comp' },
     ],
   },
   {
@@ -81,10 +81,10 @@ const ADVANTAGES: Advantage[] = [
     icon: Headphones,
     badge: '< 2h',
     title: 'Support 24/7',
-    desc: '\u00c9quipe technique disponible 7j/7 par WhatsApp, email et t\u00e9l\u00e9phone. R\u00e9ponse sous 2h, r\u00e9solution sous 24h garantie.',
+    desc: 'Équipe technique disponible 7j/7 par WhatsApp, email et téléphone. Réponse sous 2h, résolution sous 24h garantie.',
     bars: [
       { label: 'TSF', val: '< 2h', pct: 95, type: 'tsf' },
-      { label: 'Conc.', val: '24\u201348h', pct: 35, type: 'comp' },
+      { label: 'Conc.', val: '24–48h', pct: 35, type: 'comp' },
     ],
   },
 ];

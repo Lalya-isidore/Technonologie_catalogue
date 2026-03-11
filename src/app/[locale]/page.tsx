@@ -20,8 +20,8 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   return generateSeoMetadata({
-    title: 'TSF Technology \u2014 Switches Ethernet Industriels | 102 Produits IP40',
-    description: 'Expert en communication r\u00e9seau industrielle fiable. 102 switches Ethernet industriels IP40, -40\u00b0C \u00e0 +75\u00b0C. Layer 2, Layer 3, PoE, TSN. Livraison Europe.',
+    title: 'TSF Technology — Switches Ethernet Industriels | 102 Produits IP40',
+    description: 'Expert en communication réseau industrielle fiable. 102 switches Ethernet industriels IP40, -40°C à +75°C. Layer 2, Layer 3, PoE, TSN. Livraison Europe.',
     path: pathForAllLocales(''),
     locale: locale as Locale,
   });

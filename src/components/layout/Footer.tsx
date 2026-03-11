@@ -31,11 +31,11 @@ const RESOURCE_LINKS = [
 ];
 
 const BAND_ITEMS = [
-  { icon: Shield, label: 'Certifi\u00e9 IP40' },
-  { icon: Thermometer, label: '-40\u00b0C \u00e0 +75\u00b0C' },
+  { icon: Shield, label: 'Certifié IP40' },
+  { icon: Thermometer, label: '-40°C à +75°C' },
   { icon: Award, label: 'Garantie 3 ans' },
   { icon: Headphones, label: 'Support 24/7' },
-  { icon: Briefcase, label: '300 000+ unit\u00e9s/an' },
+  { icon: Briefcase, label: '300 000+ unités/an' },
 ] as const;
 
 export function Footer() {
