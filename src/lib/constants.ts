@@ -1,0 +1,51 @@
+export const SITE = {
+  name: 'TSF Technology',
+  domain: 'https://tsf-technology.com',
+  tagline: 'Expert en Communication Internet Industrielle Fiable',
+  company: {
+    legalName: 'LANNKIN',
+    address: '401 Chemin du Montbert',
+    postalCode: '14100',
+    city: 'Hermival-les-Vaux',
+    country: 'France',
+    siren: '953 478 971',
+    siret: '953 478 971 00013',
+    tva: 'FR45953478971',
+  },
+  contact: {
+    email: 'contact@tsf-technology.com',
+    whatsapp: '+33617030308',
+    whatsappUrl: 'https://wa.me/33617030308',
+  },
+  locales: ['fr', 'en', 'es', 'it', 'ar', 'ru'] as const,
+  defaultLocale: 'fr' as const,
+  stats: {
+    totalProducts: 102,
+    annualCapacity: 300000,
+    warrantyYears: 3,
+    layer3Models: 10,
+    maxPorts: 52,
+  },
+  competitive: {
+    ipRating: 'IP40',
+    competitorIp: 'IP30',
+    tempRange: '-40°C à +75°C',
+    competitorTemp: '-10°C à +60°C',
+    powerInput: 'DC 9~60V',
+    competitorPower: 'DC 12~48V',
+    casing: 'Alliage aluminium haute résistance',
+    competitorCasing: 'Coque métal standard',
+  },
+} as const;
+
+export const CATEGORIES = {
+  'layer-3-din-rail': { count: 2, icon: 'Server' },
+  'layer-3-rack': { count: 8, icon: 'Server' },
+  'layer-2-managed-rack': { count: 16, icon: 'Network' },
+  'layer-2-managed-din-rail': { count: 19, icon: 'Network' },
+  'non-managed-rack': { count: 13, icon: 'Plug' },
+  'non-managed-din-rail': { count: 19, icon: 'Plug' },
+  'poe-industriel': { count: 7, icon: 'Zap' },
+  'tsn-ptp-ieee-1588': { count: 5, icon: 'Clock' },
+  'compacts': { count: 12, icon: 'Cpu' },
+} as const;
