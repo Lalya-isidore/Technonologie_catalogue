@@ -7,6 +7,7 @@ import type { Locale } from '@/lib/types';
 import { Clock, ArrowLeft } from 'lucide-react';
 import { InternalLinks } from '@/components/sections/InternalLinks';
 import { getRelatedSolutionLinks, getResourceLinks } from '@/lib/internal-links';
+import { generateMetadata as generateSeoMetadata, generateArticleJsonLd, generateBreadcrumbJsonLd } from '@/lib/seo';
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -23,7 +24,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getBlogPostBySlug(slug, locale);
   if (!post) return {};
   const loc = locale as Locale;
-  return { title: post.title[loc], description: post.excerpt[loc] };
+  const pathForAllLocales: Record<Locale, string> = {} as Record<Locale, string>;
+  for (const l of ['fr', 'en', 'es', 'it', 'ar', 'ru'] as Locale[]) {
+    pathForAllLocales[l] = `/blog/${post.slug[l]}`;
+  }
+  return generateSeoMetadata({
+    title: `${post.title[loc]} | Blog TSF Technology`,
+    description: post.excerpt[loc],
+    path: pathForAllLocales,
+    locale: loc,
+  });
 }
 
 export default async function BlogPostPage({ params }: Props) {
@@ -36,8 +46,25 @@ export default async function BlogPostPage({ params }: Props) {
   const solutionLinksData = getRelatedSolutionLinks();
   const resourceLinksData = getResourceLinks();
 
+  const articleJsonLd = generateArticleJsonLd({
+    title: post.title[loc],
+    description: post.excerpt[loc],
+    slug: post.slug[loc],
+    locale: loc,
+    publishedAt: post.date,
+    image: post.image,
+  });
+
+  const breadcrumbJsonLd = generateBreadcrumbJsonLd([
+    { name: 'Accueil', url: '/' },
+    { name: 'Blog', url: '/blog' },
+    { name: post.title[loc], url: `/blog/${post.slug[loc]}` },
+  ]);
+
   return (
     <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <div className="max-w-3xl mx-auto px-4 py-16">
         <Link href="/blog" className="inline-flex items-center gap-1.5 text-sm text-primary-500 hover:text-primary-600 mb-8">
           <ArrowLeft size={16} /> Retour au blog

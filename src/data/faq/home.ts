@@ -3,6 +3,7 @@ import type { PageFaqMap } from './index';
 
 const faqs: FAQ[] = [
   {
+    category: 'produit',
     question: {
       fr: 'Qu\'est-ce qu\'un switch Ethernet industriel et à quoi sert-il ?',
       en: 'What is an industrial Ethernet switch and what is it used for?',
@@ -21,6 +22,7 @@ const faqs: FAQ[] = [
     },
   },
   {
+    category: 'produit',
     question: {
       fr: 'Pourquoi choisir TSF Technology comme fournisseur de switches industriels ?',
       en: 'Why choose TSF Technology as your industrial switch supplier?',
@@ -39,6 +41,7 @@ const faqs: FAQ[] = [
     },
   },
   {
+    category: 'produit',
     question: {
       fr: 'Quelle est la différence entre un switch managé et non managé ?',
       en: 'What is the difference between a managed and unmanaged switch?',
@@ -57,6 +60,7 @@ const faqs: FAQ[] = [
     },
   },
   {
+    category: 'certif',
     question: {
       fr: 'Quelles certifications ont les switches industriels TSF Technology ?',
       en: 'What certifications do TSF Technology industrial switches have?',
@@ -75,6 +79,7 @@ const faqs: FAQ[] = [
     },
   },
   {
+    category: 'commande',
     question: {
       fr: 'Comment commander un switch industriel sur TSF Technology ?',
       en: 'How to order an industrial switch from TSF Technology?',
@@ -93,6 +98,7 @@ const faqs: FAQ[] = [
     },
   },
   {
+    category: 'secteur',
     question: {
       fr: 'Quels secteurs industriels utilisent les switches Ethernet TSF Technology ?',
       en: 'Which industrial sectors use TSF Technology Ethernet switches?',
@@ -111,6 +117,7 @@ const faqs: FAQ[] = [
     },
   },
   {
+    category: 'commande',
     question: {
       fr: 'TSF Technology propose-t-il un support technique pour l\'installation ?',
       en: 'Does TSF Technology offer technical support for installation?',

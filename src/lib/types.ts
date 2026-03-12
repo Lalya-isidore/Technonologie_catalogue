@@ -46,6 +46,7 @@ export interface Product {
 export interface FAQ {
   question: LocalizedString;
   answer: LocalizedString;
+  category?: string;
 }
 
 export interface ProductCategory {

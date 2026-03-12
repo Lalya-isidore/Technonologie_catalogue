@@ -56,11 +56,10 @@ export function Footer() {
 
       {/* ── TOP BAND ── */}
       <div
-        className="flex items-center justify-between gap-6 flex-wrap"
+        className="flex items-center justify-between gap-6 flex-wrap px-6 py-4 lg:px-14 lg:py-5"
         style={{
           background: '#0b1630',
           borderBottom: '1px solid rgba(255,255,255,0.07)',
-          padding: '20px 56px',
         }}
       >
         <div className="flex items-center gap-7 flex-wrap">
@@ -87,8 +86,7 @@ export function Footer() {
 
       {/* ── MAIN ── */}
       <div
-        className="relative z-[1] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[260px_1fr_1fr_1fr]"
-        style={{ padding: '56px 56px 40px', gap: '48px' }}
+        className="relative z-[1] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[260px_1fr_1fr_1fr] px-6 pt-10 pb-8 lg:px-14 lg:pt-14 lg:pb-10 gap-8 lg:gap-12"
       >
         {/* Brand column */}
         <div>
@@ -284,8 +282,8 @@ export function Footer() {
 
       {/* ── BOTTOM BAR ── */}
       <div
-        className="flex items-center justify-between gap-4 flex-wrap"
-        style={{ borderTop: '1px solid rgba(255,255,255,0.07)', padding: '20px 56px' }}
+        className="flex items-center justify-between gap-4 flex-wrap px-6 py-4 lg:px-14 lg:py-5"
+        style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}
       >
         <span className="font-mono text-[11px]" style={{ color: '#475569' }}>
           &copy; 2025 <span style={{ color: '#cbd5e1' }}>TSF Technology</span> &mdash; Tous droits r&eacute;serv&eacute;s
@@ -336,10 +334,8 @@ export function Footer() {
           50%      { opacity: .4; transform: scale(1.6); }
         }
 
-        @media (max-width: 1000px) {
-          footer .footer-top-band-wrap { padding: 16px 24px !important; }
-          footer > div:nth-child(3) { padding: 40px 24px 32px !important; }
-          footer > div:last-child { padding: 16px 24px !important; flex-direction: column; align-items: flex-start !important; gap: 12px !important; }
+        @media (max-width: 768px) {
+          footer > div:last-child { flex-direction: column; align-items: flex-start !important; gap: 12px !important; }
         }
       `}} />
     </footer>

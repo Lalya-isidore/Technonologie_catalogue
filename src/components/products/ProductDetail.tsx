@@ -91,8 +91,8 @@ export function ProductDetail({ product }: Props) {
       {/* Specs table */}
       <section className="mb-16">
         <h2 className="text-2xl font-bold text-dark mb-6">{t('specifications')}</h2>
-        <div className="bg-gray-50 rounded-xl overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="bg-gray-50 rounded-xl overflow-x-auto">
+          <table className="w-full text-sm min-w-[400px]">
             <tbody>
               <SpecRow label={t('sku')} value={product.sku} />
               <SpecRow label={t('ports')} value={`${product.totalPorts} — ${product.portConfig}`} />

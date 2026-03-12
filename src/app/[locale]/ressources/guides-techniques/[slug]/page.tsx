@@ -4,7 +4,7 @@ import { setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Clock, FileText } from 'lucide-react';
 import { getGuideBySlug, getAllGuides } from '@/data/guides';
-import { generateMetadata as generateSeoMetadata } from '@/lib/seo';
+import { generateMetadata as generateSeoMetadata, generateBreadcrumbJsonLd } from '@/lib/seo';
 import type { Locale } from '@/lib/types';
 
 const pathForAllLocales = (p: string) => ({ fr: p, en: p, es: p, it: p, ar: p, ru: p });
@@ -38,8 +38,15 @@ export default async function GuidePage({ params }: Props) {
   const guide = getGuideBySlug(slug);
   if (!guide) notFound();
 
+  const breadcrumbJsonLd = generateBreadcrumbJsonLd([
+    { name: 'Accueil', url: '/' },
+    { name: 'Guides Techniques', url: '/ressources/guides-techniques' },
+    { name: guide.title, url: `/ressources/guides-techniques/${slug}` },
+  ]);
+
   return (
     <main className="max-w-3xl mx-auto px-4 py-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       {/* Breadcrumb */}
       <Link
         href="/ressources/guides-techniques"

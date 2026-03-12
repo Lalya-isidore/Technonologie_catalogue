@@ -58,7 +58,7 @@ export default async function HomePage({ params }: Props) {
       <CategoriesOverview />
       <FeaturedProducts />
       <AdvantagesSection />
-      <FAQSection faqs={homeFaqs} locale={loc} title="Questions fréquentes" />
+      <FAQSection faqs={homeFaqs} locale={loc} title="Questions fréquentes" showSidebar />
       <CtaSection />
     </main>
   );

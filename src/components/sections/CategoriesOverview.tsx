@@ -21,10 +21,10 @@ export function CategoriesOverview() {
   const t = useTranslations('nav');
 
   return (
-    <section style={{ background: '#f4f7fc' }} className="py-20 lg:py-24">
+    <section style={{ background: '#f4f7fc' }} className="pt-8 pb-16 lg:pt-10 lg:pb-20">
       <div className="max-w-[1280px] mx-auto px-6 sm:px-12">
         {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6" style={{ marginBottom: '52px' }}>
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6" style={{ marginBottom: '36px' }}>
           <div className="max-w-[560px]">
             <div
               className="inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-xs font-semibold mb-4"

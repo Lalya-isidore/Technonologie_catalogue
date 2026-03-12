@@ -420,7 +420,7 @@ export function HeroSection() {
       </section>
 
       {/* ── TICKER ── */}
-      <div style={{ height: '32px', background: '#0b1630' }} />
+      <div style={{ height: '12px', background: '#0b1630' }} />
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes tickerScroll {
           from { transform: translateX(0); }
