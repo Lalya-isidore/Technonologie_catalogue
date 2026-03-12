@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import type { Product, Locale } from '@/lib/types';
-import { formatPrice } from '@/lib/utils';
+
 import {
   Network, Shield, Thermometer, Zap, LayoutGrid, Gauge,
   Server, FileText, MessageCircle, ChevronDown,
@@ -55,14 +55,8 @@ export function ProductDetail({ product }: Props) {
             {product.description[locale]}
           </p>
 
-          {/* Price */}
+          {/* CTA */}
           <div className="bg-primary-50 rounded-xl p-6 mb-8">
-            <div className="flex items-baseline gap-2 mb-4">
-              <span className="text-sm text-medium">{t('fromPrice')}</span>
-              <span className="text-3xl font-bold text-primary-600">
-                {formatPrice(product.priceUSD, locale)}
-              </span>
-            </div>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link
                 href="/demande-de-devis"

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import type { Product } from '@/lib/types';
 import type { Locale } from '@/lib/types';
-import { formatPrice } from '@/lib/utils';
+
 import { Network, Gauge, LayoutGrid, Shield, Thermometer, GitCompare, Heart, ArrowRight } from 'lucide-react';
 
 type Props = {
@@ -129,14 +129,11 @@ export function ProductCard({ product, index = 0 }: Props) {
           </span>
         </div>
 
-        {/* Footer: price + actions */}
+        {/* Footer: quote CTA + actions */}
         <div className="pt-3 flex items-center justify-between" style={{ borderTop: '1px solid #f1f5f9' }}>
-          <div>
-            <span className="text-[11px] block" style={{ color: '#94a3b8' }}>{t('fromPrice')}</span>
-            <span className="text-[17px] font-bold font-mono" style={{ color: '#1d4ed8' }}>
-              {formatPrice(product.priceUSD, locale)}
-            </span>
-          </div>
+          <span className="text-[12px] font-semibold" style={{ color: '#1d4ed8' }}>
+            {t('requestQuote')}
+          </span>
           <div className="flex items-center gap-1.5">
             <span
               className="w-8 h-8 rounded-lg flex items-center justify-center transition-colors"

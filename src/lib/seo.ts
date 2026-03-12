@@ -142,8 +142,6 @@ export function generateProductJsonLd(product: Product, locale: Locale) {
     image: product.images[0] ? `${SITE.domain}${product.images[0]}` : undefined,
     offers: {
       '@type': 'Offer',
-      priceCurrency: 'USD',
-      price: product.priceUSD,
       availability: 'https://schema.org/InStock',
       seller: {
         '@type': 'Organization',
@@ -215,8 +213,7 @@ export function generateCollectionPageJsonLd(
           sku: product.sku,
           offers: {
             '@type': 'Offer',
-            priceCurrency: 'USD',
-            price: product.priceUSD,
+            availability: 'https://schema.org/InStock',
           },
         },
       })),
