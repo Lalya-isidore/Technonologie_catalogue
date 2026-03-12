@@ -1,19 +1,87 @@
 'use client';
 
+import { useState, useCallback } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { getBestsellers, getNewProducts } from '@/data/products';
+import { getProductImages } from '@/data/product-images';
 import Link from 'next/link';
-import type { Product } from '@/lib/types';
-import type { Locale } from '@/lib/types';
+import Image from 'next/image';
+import type { Product, Locale } from '@/lib/types';
 
 import {
-  Network, Gauge, LayoutGrid, Shield, Thermometer,
-  GitCompare, Heart, ArrowRight,
+  Gauge, LayoutGrid, Shield, Thermometer,
+  GitCompare, Heart, ArrowRight, ChevronLeft, ChevronRight,
 } from 'lucide-react';
+
+/** Mini image slider for product cards */
+function CardImageSlider({ images, alt }: { images: string[]; alt: string }) {
+  const [idx, setIdx] = useState(0);
+
+  const prev = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIdx((i) => (i === 0 ? images.length - 1 : i - 1));
+  }, [images.length]);
+
+  const next = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIdx((i) => (i === images.length - 1 ? 0 : i + 1));
+  }, [images.length]);
+
+  return (
+    <div className="relative w-full h-full">
+      <Image
+        src={images[idx]}
+        alt={alt}
+        fill
+        className="object-contain transition-opacity duration-300"
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+      />
+
+      {/* Navigation arrows */}
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={prev}
+            className="absolute left-1 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+            style={{ background: 'rgba(255,255,255,0.9)', boxShadow: '0 1px 4px rgba(0,0,0,0.15)' }}
+            aria-label="Image précédente"
+          >
+            <ChevronLeft size={14} style={{ color: '#0f2257' }} />
+          </button>
+          <button
+            onClick={next}
+            className="absolute right-1 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+            style={{ background: 'rgba(255,255,255,0.9)', boxShadow: '0 1px 4px rgba(0,0,0,0.15)' }}
+            aria-label="Image suivante"
+          >
+            <ChevronRight size={14} style={{ color: '#0f2257' }} />
+          </button>
+
+          {/* Dots */}
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
+            {images.map((_, i) => (
+              <span
+                key={i}
+                className="w-1.5 h-1.5 rounded-full transition-all"
+                style={{
+                  background: i === idx ? '#1d4ed8' : 'rgba(148,163,184,0.5)',
+                  transform: i === idx ? 'scale(1.3)' : 'scale(1)',
+                }}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
 
 function FeaturedCard({ product, index }: { product: Product; index: number }) {
   const locale = useLocale() as Locale;
   const t = useTranslations('common');
+  const images = getProductImages(product.sku);
 
   return (
     <Link
@@ -57,21 +125,27 @@ function FeaturedCard({ product, index }: { product: Product; index: number }) {
       <div
         className="relative flex items-center justify-center overflow-hidden"
         style={{
-          height: '170px',
+          height: '190px',
           background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)',
         }}
       >
-        <svg className="absolute inset-0 w-full h-full opacity-[0.35]">
-          <defs>
-            <pattern id={`dotGridFeat-${product.id}`} x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-              <circle cx="2" cy="2" r="1" fill="#cbd5e1" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill={`url(#dotGridFeat-${product.id})`} />
-        </svg>
-        <div className="relative transition-transform duration-300 group-hover:scale-110" style={{ color: '#94a3b8' }}>
-          <Network size={56} strokeWidth={1} />
-        </div>
+        {images.length > 0 ? (
+          <CardImageSlider images={images} alt={product.name[locale]} />
+        ) : (
+          <>
+            <svg className="absolute inset-0 w-full h-full opacity-[0.35]">
+              <defs>
+                <pattern id={`dotGridFeat-${product.id}`} x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="1" fill="#cbd5e1" />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill={`url(#dotGridFeat-${product.id})`} />
+            </svg>
+            <div className="relative transition-transform duration-300 group-hover:scale-110" style={{ color: '#94a3b8' }}>
+              <LayoutGrid size={56} strokeWidth={1} />
+            </div>
+          </>
+        )}
       </div>
 
       {/* Content */}
@@ -149,7 +223,7 @@ export function FeaturedProducts() {
               }}
             >
               <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#1d4ed8' }} />
-              S&eacute;lection
+              Sélection
             </div>
             <h2
               className="font-extrabold leading-[1.15]"
