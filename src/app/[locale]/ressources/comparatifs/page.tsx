@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import { BarChart3 } from 'lucide-react';
-import { generateMetadata as generateSeoMetadata } from '@/lib/seo';
+import { generateMetadata as generateSeoMetadata, generateFaqJsonLd } from '@/lib/seo';
+import { getFaqsByPage } from '@/data/faq';
+import { FAQSection } from '@/components/sections/FAQSection';
 import type { Locale } from '@/lib/types';
 
 const pathForAllLocales = (p: string) => ({ fr: p, en: p, es: p, it: p, ar: p, ru: p });
@@ -89,6 +91,18 @@ export default async function ComparisonsPage({ params }: Props) {
           ))}
         </div>
       </section>
+
+      {(() => {
+        const loc = locale as Locale;
+        const faqs = getFaqsByPage('comparatifs');
+        if (!faqs.length) return null;
+        return (
+          <>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(generateFaqJsonLd(faqs, loc)) }} />
+            <FAQSection faqs={faqs} locale={loc} title="Questions fréquentes — Comparatifs" />
+          </>
+        );
+      })()}
     </main>
   );
 }

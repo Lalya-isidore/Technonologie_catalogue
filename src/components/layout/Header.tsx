@@ -111,7 +111,6 @@ export function Header() {
           </a>
         </div>
         <div className="flex items-center gap-1.5 text-[12px]">
-          <Globe size={13} />
           <LanguageSwitcher />
         </div>
       </div>

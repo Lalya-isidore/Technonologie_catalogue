@@ -4,7 +4,9 @@ import { setRequestLocale } from 'next-intl/server';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { CategoriesOverview } from '@/components/sections/CategoriesOverview';
 import { SectionSkeleton } from '@/components/ui/SectionSkeleton';
-import { generateOrganizationJsonLd, generateWebSiteJsonLd, generateLocalBusinessJsonLd, generateMetadata as generateSeoMetadata } from '@/lib/seo';
+import { generateOrganizationJsonLd, generateWebSiteJsonLd, generateLocalBusinessJsonLd, generateFaqJsonLd, generateMetadata as generateSeoMetadata } from '@/lib/seo';
+import { getFaqsByPage } from '@/data/faq';
+import { FAQSection } from '@/components/sections/FAQSection';
 import type { Locale } from '@/lib/types';
 
 const FeaturedProducts = dynamic(() => import('@/components/sections/FeaturedProducts').then(m => ({ default: m.FeaturedProducts })), { ssr: true, loading: () => <SectionSkeleton /> });
@@ -31,6 +33,9 @@ export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const loc = locale as Locale;
+  const homeFaqs = getFaqsByPage('home');
+
   const schemas = [
     generateOrganizationJsonLd(),
     generateWebSiteJsonLd(),
@@ -46,10 +51,14 @@ export default async function HomePage({ params }: Props) {
   return (
     <main className="-mt-[64px] lg:-mt-[96px]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graphJsonLd) }} />
+      {homeFaqs.length > 0 && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(generateFaqJsonLd(homeFaqs, loc)) }} />
+      )}
       <HeroSection />
       <CategoriesOverview />
       <FeaturedProducts />
       <AdvantagesSection />
+      <FAQSection faqs={homeFaqs} locale={loc} title="Questions fréquentes" />
       <CtaSection />
     </main>
   );

@@ -5,6 +5,10 @@ import Link from 'next/link';
 import { ArrowRight, CheckCircle, MessageCircle } from 'lucide-react';
 import { InternalLinks } from '@/components/sections/InternalLinks';
 import { getRelatedCategoryLinks, getRelatedSolutionLinks, getResourceLinks } from '@/lib/internal-links';
+import { generateFaqJsonLd } from '@/lib/seo';
+import { getFaqsByPage } from '@/data/faq';
+import { FAQSection } from '@/components/sections/FAQSection';
+import type { Locale } from '@/lib/types';
 
 type SolutionData = {
   title: string;
@@ -130,8 +134,11 @@ export default async function SolutionPage({ params }: Props) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
 
+  const loc = locale as Locale;
   const solution = SOLUTIONS[slug];
   if (!solution) notFound();
+
+  const faqs = getFaqsByPage(slug);
 
   // Build internal links - exclude current solution from solution links
   const otherSolutionLinks = getRelatedSolutionLinks().filter(
@@ -237,6 +244,13 @@ export default async function SolutionPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {faqs.length > 0 && (
+        <>
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(generateFaqJsonLd(faqs, loc)) }} />
+          <FAQSection faqs={faqs} locale={loc} title="Questions fréquentes" />
+        </>
+      )}
 
       <InternalLinks
         categoryLinks={categoryLinksData}

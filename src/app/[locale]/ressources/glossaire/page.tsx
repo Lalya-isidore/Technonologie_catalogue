@@ -3,7 +3,9 @@ import { setRequestLocale } from 'next-intl/server';
 import { getAllGlossaryTerms } from '@/data/glossary';
 import type { Locale } from '@/lib/types';
 import { BookOpen } from 'lucide-react';
-import { generateMetadata as generateSeoMetadata } from '@/lib/seo';
+import { generateMetadata as generateSeoMetadata, generateFaqJsonLd } from '@/lib/seo';
+import { getFaqsByPage } from '@/data/faq';
+import { FAQSection } from '@/components/sections/FAQSection';
 
 const pathForAllLocales = (p: string) => ({ fr: p, en: p, es: p, it: p, ar: p, ru: p });
 
@@ -47,6 +49,17 @@ export default async function GlossaryPage({ params }: Props) {
           </div>
         ))}
       </div>
+
+      {(() => {
+        const faqs = getFaqsByPage('glossaire');
+        if (!faqs.length) return null;
+        return (
+          <>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(generateFaqJsonLd(faqs, loc)) }} />
+            <FAQSection faqs={faqs} locale={loc} title="Questions fréquentes — Glossaire" />
+          </>
+        );
+      })()}
     </main>
   );
 }

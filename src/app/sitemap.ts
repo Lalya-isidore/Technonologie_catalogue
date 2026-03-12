@@ -3,6 +3,7 @@ import { SITE, CATEGORIES } from '@/lib/constants';
 import type { Locale } from '@/lib/types';
 import { getAllProducts } from '@/data/products';
 import { getAllBlogPosts } from '@/data/blog';
+import { getAllGuides } from '@/data/guides';
 
 const locales = SITE.locales;
 const domain = SITE.domain;
@@ -131,6 +132,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: page.priority,
       alternates: buildAlternates(page.path),
+    });
+  }
+
+  // ─── Guide pages (5 guides techniques) ───
+  const guideSlugs = getAllGuides();
+  for (const guide of guideSlugs) {
+    const path = `/ressources/guides-techniques/${guide.slug}`;
+    entries.push({
+      url: getUrl('fr', path),
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+      alternates: buildAlternates(path),
     });
   }
 

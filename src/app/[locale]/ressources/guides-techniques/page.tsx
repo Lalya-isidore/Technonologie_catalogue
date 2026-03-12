@@ -9,11 +9,11 @@ const pathForAllLocales = (p: string) => ({ fr: p, en: p, es: p, it: p, ar: p, r
 
 const GUIDES = [
   { title: 'Comment choisir son switch Ethernet industriel', href: '/blog/comment-choisir-switch-ethernet-industriel', description: 'Layer 2 vs 3, managed vs unmanaged, DIN-Rail vs Rack, PoE, TSN — le guide complet.' },
-  { title: 'Dimensionner un réseau PoE industriel', href: '#', description: 'Calcul du budget PoE, choix des switches, câblage et alimentation redondante.' },
-  { title: 'Configurer la redondance réseau (RSTP/Ring)', href: '#', description: 'Mise en place de la redondance réseau pour garantir la haute disponibilité.' },
-  { title: 'Migration vers TSN : guide pratique', href: '#', description: 'Étapes clés pour migrer vos réseaux industriels vers le Time-Sensitive Networking.' },
-  { title: 'Sécuriser un réseau Ethernet industriel', href: '#', description: 'VLAN, ACL, 802.1X et bonnes pratiques de cybersécurité industrielle.' },
-  { title: 'Fibre optique en milieu industriel', href: '#', description: 'Choix des modules SFP, types de fibres et distances maximales.' },
+  { title: 'Dimensionner un réseau PoE industriel', href: '/ressources/guides-techniques/dimensionner-reseau-poe-industriel', description: 'Calcul du budget PoE, choix des switches, câblage et alimentation redondante.' },
+  { title: 'Configurer la redondance réseau (RSTP/Ring)', href: '/ressources/guides-techniques/configurer-redondance-rstp-ring', description: 'Mise en place de la redondance réseau pour garantir la haute disponibilité.' },
+  { title: 'Migration vers TSN : guide pratique', href: '/ressources/guides-techniques/migration-tsn-guide-pratique', description: 'Étapes clés pour migrer vos réseaux industriels vers le Time-Sensitive Networking.' },
+  { title: 'Sécuriser un réseau Ethernet industriel', href: '/ressources/guides-techniques/securiser-reseau-ethernet-industriel', description: 'VLAN, ACL, 802.1X et bonnes pratiques de cybersécurité industrielle.' },
+  { title: 'Fibre optique en milieu industriel', href: '/ressources/guides-techniques/fibre-optique-milieu-industriel', description: 'Choix des modules SFP, types de fibres et distances maximales.' },
 ];
 
 type Props = { params: Promise<{ locale: string }> };

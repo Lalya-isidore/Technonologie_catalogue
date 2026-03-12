@@ -4,7 +4,9 @@ import Link from 'next/link';
 import { getAllBlogPosts } from '@/data/blog';
 import type { Locale } from '@/lib/types';
 import { Clock, ArrowRight } from 'lucide-react';
-import { generateMetadata as generateSeoMetadata } from '@/lib/seo';
+import { generateMetadata as generateSeoMetadata, generateFaqJsonLd } from '@/lib/seo';
+import { getFaqsByPage } from '@/data/faq';
+import { FAQSection } from '@/components/sections/FAQSection';
 
 const pathForAllLocales = (p: string) => ({ fr: p, en: p, es: p, it: p, ar: p, ru: p });
 
@@ -66,6 +68,17 @@ export default async function BlogPage({ params }: Props) {
           </Link>
         ))}
       </div>
+
+      {(() => {
+        const faqs = getFaqsByPage('blog');
+        if (!faqs.length) return null;
+        return (
+          <>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(generateFaqJsonLd(faqs, loc)) }} />
+            <FAQSection faqs={faqs} locale={loc} title="Questions fréquentes — Blog" />
+          </>
+        );
+      })()}
     </main>
   );
 }
