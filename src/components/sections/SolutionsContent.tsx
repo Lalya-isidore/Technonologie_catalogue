@@ -1,11 +1,12 @@
 'use client';
 
 import { Link } from '@/i18n/navigation';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Building2, Zap, Factory, Train, Fuel } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
 const INDUSTRIES = [
   {
-    num: '01/06', slug: 'smart-city', emoji: '🏙️',
+    num: '01/06', slug: 'smart-city', icon: Building2,
     cat: 'Ville connectée', name: 'Smart City & Infrastructure Urbaine', featured: true,
     bg: 'linear-gradient(135deg, #0f2040 0%, #1e3a6e 60%, #0e4d8a 100%)',
     desc: 'Caméras de surveillance, éclairage public intelligent, bornes de recharge EV, capteurs environnementaux. Nos switches IP40 résistent aux variations thermiques extrêmes en armoire de rue.',
@@ -13,7 +14,7 @@ const INDUSTRIES = [
     products: ['SW-POE-8P', 'SW-G8P-L2', 'RTR-4G-INDUS', 'AP-WIFI6-OUT'],
   },
   {
-    num: '02/06', slug: 'energies-renouvelables', emoji: '⚡',
+    num: '02/06', slug: 'energies-renouvelables', icon: Zap,
     cat: 'Énergies renouvelables', name: 'Énergie & Utilités',
     bg: 'linear-gradient(135deg, #1c2e0f 0%, #14532d 60%, #166534 100%)',
     desc: 'Parcs éoliens, centrales solaires, postes de distribution électrique. Résistance aux EMI et décharges électrostatiques.',
@@ -21,7 +22,7 @@ const INDUSTRIES = [
     products: ['SW-G5P-PRO', 'SW-TSN-PTP'],
   },
   {
-    num: '03/06', slug: 'industrie-4-0', emoji: '🏭',
+    num: '03/06', slug: 'industrie-4-0', icon: Factory,
     cat: 'Automatisation industrielle', name: 'Industrie 4.0 & Automation',
     bg: 'linear-gradient(135deg, #1c1040 0%, #3b0764 60%, #4c1d95 100%)',
     desc: 'Lignes de production, robots, automates PLC. Support PROFINET IRT pour la communication temps-réel et latence sous 1µs.',
@@ -29,7 +30,7 @@ const INDUSTRIES = [
     products: ['SW-PROFINET', 'SW-L3-MGD'],
   },
   {
-    num: '04/06', slug: 'transports-intelligents', emoji: '🚄',
+    num: '04/06', slug: 'transports-intelligents', icon: Train,
     cat: 'Mobilité & logistique', name: 'Transport Intelligent',
     bg: 'linear-gradient(135deg, #1c0a00 0%, #7c2d12 60%, #9a3412 100%)',
     desc: 'Signalisation ferroviaire, péages automatisés, gestion de flotte. Homologations EN50155 disponibles sur demande.',
@@ -37,7 +38,7 @@ const INDUSTRIES = [
     products: ['SW-POE-RAIL', 'RTR-5G-MOB'],
   },
   {
-    num: '05/06', slug: 'smart-city', emoji: '🛢️',
+    num: '05/06', slug: 'smart-city', icon: Fuel,
     cat: 'Pétrochimie & process', name: 'Pétrole, Gaz & Chimie',
     bg: 'linear-gradient(135deg, #0c1a1a 0%, #134e4a 60%, #0f766e 100%)',
     desc: 'Raffineries, plateformes offshore, sites ATEX. Équipements conçus pour les environnements explosibles et corrosifs.',
@@ -79,7 +80,7 @@ export function SolutionsContent() {
           <div key={ind.num} style={{ border: '1px solid #e2e8f0', borderRadius: 16, overflow: 'hidden', marginBottom: 20 }}>
             <div style={{ height: 280, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', background: ind.bg }}>
               <div style={{ fontFamily: "'Space Mono', monospace", fontSize: 11, color: 'rgba(255,255,255,0.4)', fontWeight: 700, position: 'absolute', top: 16, left: 20, zIndex: 1, letterSpacing: 1 }}>{ind.num}</div>
-              <div style={{ fontSize: 64, position: 'relative', zIndex: 1 }}>{ind.emoji}</div>
+              <div style={{ position: 'relative', zIndex: 1 }}><ind.icon size={64} style={{ color: 'rgba(255,255,255,0.9)' }} /></div>
               <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(7,14,31,0.85) 0%, transparent 60%)' }} />
             </div>
             <div style={{ background: '#fff', padding: 28 }}>
@@ -112,7 +113,7 @@ export function SolutionsContent() {
             <div key={ind.num} style={{ border: '1px solid #e2e8f0', borderRadius: 16, overflow: 'hidden' }}>
               <div style={{ height: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', background: ind.bg }}>
                 <div style={{ fontFamily: "'Space Mono', monospace", fontSize: 11, color: 'rgba(255,255,255,0.4)', fontWeight: 700, position: 'absolute', top: 16, left: 20, zIndex: 1, letterSpacing: 1 }}>{ind.num}</div>
-                <div style={{ fontSize: 48, position: 'relative', zIndex: 1 }}>{ind.emoji}</div>
+                <div style={{ position: 'relative', zIndex: 1 }}><ind.icon size={48} style={{ color: 'rgba(255,255,255,0.9)' }} /></div>
                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(7,14,31,0.85) 0%, transparent 60%)' }} />
               </div>
               <div style={{ background: '#fff', padding: 24 }}>

@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Shield, Thermometer, Award, Headphones, Package, CheckCircle, Globe, Zap } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
 /* ── Counter animation hook ── */
 function useCounter(target: number, delay: number, duration = 1200) {
@@ -218,15 +219,15 @@ function NetworkCanvas() {
 }
 
 /* ── Ticker data ── */
-const TICKER_ITEMS = [
-  { icon: '🛡️', text: 'Certifié IP40' },
-  { icon: '🌡️', text: '-40°C à +75°C' },
-  { icon: '🏅', text: 'Garantie 3 ans' },
-  { icon: '🎧', text: 'Support 24/7' },
-  { icon: '📦', text: '300 000+ unités/an' },
-  { icon: '✅', text: 'CE | FCC | UL' },
-  { icon: '🌐', text: '6 langues disponibles' },
-  { icon: '⚡', text: 'Livraison rapide' },
+const TICKER_ITEMS: { icon: LucideIcon; text: string }[] = [
+  { icon: Shield, text: 'Certifié IP40' },
+  { icon: Thermometer, text: '-40°C à +75°C' },
+  { icon: Award, text: 'Garantie 3 ans' },
+  { icon: Headphones, text: 'Support 24/7' },
+  { icon: Package, text: '300 000+ unités/an' },
+  { icon: CheckCircle, text: 'CE | FCC | UL' },
+  { icon: Globe, text: '6 langues disponibles' },
+  { icon: Zap, text: 'Livraison rapide' },
 ];
 
 /* ── HeroSection ── */
@@ -484,7 +485,7 @@ export function HeroSection() {
                 color: 'rgba(255,255,255,0.9)',
               }}
             >
-              <span style={{ opacity: 0.7 }}>{item.icon}</span>
+              <item.icon size={14} style={{ opacity: 0.7 }} />
               <span>{item.text}</span>
             </span>
           ))}

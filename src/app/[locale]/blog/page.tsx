@@ -3,7 +3,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { getAllBlogPosts } from '@/data/blog';
 import type { Locale } from '@/lib/types';
-import { Clock, ArrowRight } from 'lucide-react';
+import { Clock, ArrowRight, Radio } from 'lucide-react';
 import { generateMetadata as generateSeoMetadata, generateFaqJsonLd } from '@/lib/seo';
 import { getFaqsByPage } from '@/data/faq';
 import { FAQSection } from '@/components/sections/FAQSection';
@@ -43,7 +43,7 @@ export default async function BlogPage({ params }: Props) {
             className="group bg-white rounded-xl border border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all overflow-hidden"
           >
             <div className="aspect-[16/9] bg-gradient-to-br from-primary-100 to-primary-50 flex items-center justify-center">
-              <span className="text-4xl text-primary-300">📡</span>
+              <Radio size={40} className="text-primary-300" />
             </div>
             <div className="p-5">
               <div className="flex items-center gap-3 text-xs text-medium mb-3">

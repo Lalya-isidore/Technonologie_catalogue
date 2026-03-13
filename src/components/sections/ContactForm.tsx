@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Mail, Phone, MapPin, Send, CheckCircle, Clock } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle, Clock, FileText, Wrench, MessageSquare, Plug, Radio, Wifi, Zap, Link2, RefreshCw } from 'lucide-react';
 
 function WhatsAppIcon({ size = 16, color = 'currentColor' }: { size?: number; color?: string }) {
   return (
@@ -15,12 +15,12 @@ function WhatsAppIcon({ size = 16, color = 'currentColor' }: { size?: number; co
 type Props = { isQuote?: boolean };
 
 const PRODUCT_TYPES = [
-  { key: 'switch', emoji: '🔌', label: 'Switch Ethernet' },
-  { key: 'router', emoji: '📡', label: 'Routeur 4G/5G' },
-  { key: 'wifi', emoji: '📶', label: 'Wi-Fi 6' },
-  { key: 'poe', emoji: '⚡', label: 'Switch PoE' },
-  { key: 'iot', emoji: '🔗', label: 'IoT Gateway' },
-  { key: 'converter', emoji: '🔄', label: 'Convertisseur' },
+  { key: 'switch', icon: Plug, label: 'Switch Ethernet' },
+  { key: 'router', icon: Radio, label: 'Routeur 4G/5G' },
+  { key: 'wifi', icon: Wifi, label: 'Wi-Fi 6' },
+  { key: 'poe', icon: Zap, label: 'Switch PoE' },
+  { key: 'iot', icon: Link2, label: 'IoT Gateway' },
+  { key: 'converter', icon: RefreshCw, label: 'Convertisseur' },
 ];
 
 const QUANTITY_OPTIONS = ['1–5', '6–20', '21–100', '100–500', '500+'];
@@ -107,12 +107,15 @@ export function ContactForm({ isQuote = false }: Props) {
 
           {/* Tabs */}
           <div style={{ display: 'flex', borderBottom: '1px solid #e2e8f0' }}>
-            {([['devis', '📋', 'Demande de devis'], ['support', '🔧', 'Support technique'], ['general', '💬', 'Question générale']] as const).map(([key, emoji, label]) => (
-              <button key={key} onClick={() => setActiveTab(key)}
-                style={{ flex: 1, padding: 12, textAlign: 'center', fontSize: 13, fontWeight: 600, color: activeTab === key ? '#1d4ed8' : '#64748b', cursor: 'pointer', background: 'none', border: 'none', borderBottomStyle: 'solid', borderBottomWidth: 2, borderBottomColor: activeTab === key ? '#1d4ed8' : 'transparent', transition: 'all .2s', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
-                <span>{emoji}</span> {label}
-              </button>
-            ))}
+            {([['devis', 'FileText', 'Demande de devis'], ['support', 'Wrench', 'Support technique'], ['general', 'MessageSquare', 'Question générale']] as const).map(([key, iconKey, label]) => {
+              const TabIcon = { FileText, Wrench, MessageSquare }[iconKey]!;
+              return (
+                <button key={key} onClick={() => setActiveTab(key)}
+                  style={{ flex: 1, padding: 12, textAlign: 'center', fontSize: 13, fontWeight: 600, color: activeTab === key ? '#1d4ed8' : '#64748b', cursor: 'pointer', background: 'none', border: 'none', borderBottomStyle: 'solid', borderBottomWidth: 2, borderBottomColor: activeTab === key ? '#1d4ed8' : 'transparent', transition: 'all .2s', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+                  <TabIcon size={15} /> {label}
+                </button>
+              );
+            })}
           </div>
 
           {submitted ? (
@@ -164,7 +167,7 @@ export function ContactForm({ isQuote = false }: Props) {
                             border: selectedProduct === pt.key ? '1.5px solid #1d4ed8' : '1.5px solid #e2e8f0',
                             transition: 'all .2s',
                           }}>
-                          <div style={{ fontSize: 20, marginBottom: 4 }}>{pt.emoji}</div>
+                          <div style={{ marginBottom: 4, display: 'flex', justifyContent: 'center' }}><pt.icon size={22} style={{ color: selectedProduct === pt.key ? '#1d4ed8' : '#94a3b8' }} /></div>
                           <div style={{ fontSize: 12, fontWeight: 600, color: selectedProduct === pt.key ? '#1d4ed8' : '#64748b' }}>{pt.label}</div>
                         </button>
                       ))}
@@ -264,7 +267,7 @@ export function ContactForm({ isQuote = false }: Props) {
           <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 14, overflow: 'hidden' }}>
             <div style={{ background: '#0b1630', height: 140, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8, position: 'relative' }}>
               <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 50%, rgba(29,78,216,0.25), transparent 60%)' }} />
-              <div style={{ fontSize: 32, position: 'relative', zIndex: 1 }}>📍</div>
+              <div style={{ position: 'relative', zIndex: 1 }}><MapPin size={32} style={{ color: '#f97316' }} /></div>
               <div style={{ fontSize: 11, color: '#64748b', textAlign: 'center', position: 'relative', zIndex: 1, lineHeight: 1.5 }}>
                 TSF Technology — Lannkin<br />Hermival-les-Vaux, Normandie
               </div>
