@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import type { InternalLink } from '@/lib/internal-links';
 import { ArrowRight, Layers, Lightbulb, BookOpen } from 'lucide-react';
 

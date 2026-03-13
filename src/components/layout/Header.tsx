@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import {
@@ -101,13 +101,19 @@ export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50" role="banner">
       {/* ── TOP BAR ── */}
-      <div className="hidden lg:flex items-center justify-between" style={{ background: '#0b1630', padding: '7px 40px', fontSize: '12.5px', color: '#94a3b8' }}>
+      <div className="hidden lg:flex items-center justify-between" style={{ background: '#060d1f', padding: '7px 40px', fontSize: '12.5px', color: '#94a3b8', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
         <div className="flex items-center gap-6">
-          <a href="mailto:contact@tsf-technology.com" className="nav-topbar-link flex items-center gap-1.5 no-underline transition-colors" style={{ color: '#94a3b8' }}>
-            <Mail size={13} /> contact@tsf-technology.com
+          <a href="mailto:contact@tsf-technology.com" className="nav-topbar-link flex items-center gap-2 no-underline transition-colors" style={{ color: '#94a3b8' }}>
+            <span className="flex items-center justify-center w-[22px] h-[22px] rounded-full" style={{ background: 'rgba(96,165,250,0.15)' }}>
+              <Mail size={11} style={{ color: '#60a5fa' }} />
+            </span>
+            contact@tsf-technology.com
           </a>
-          <a href="tel:+33617030308" className="nav-topbar-link flex items-center gap-1.5 no-underline transition-colors" style={{ color: '#94a3b8' }}>
-            <Phone size={13} /> +33 6 17 03 03 08
+          <a href="tel:+33617030308" className="nav-topbar-link flex items-center gap-2 no-underline transition-colors" style={{ color: '#94a3b8' }}>
+            <span className="flex items-center justify-center w-[22px] h-[22px] rounded-full" style={{ background: 'rgba(236,72,153,0.15)' }}>
+              <Phone size={11} style={{ color: '#ec4899' }} />
+            </span>
+            +33 6 17 03 03 08
           </a>
         </div>
         <div className="flex items-center gap-1.5 text-[12px]">
@@ -119,18 +125,23 @@ export function Header() {
       <div
         className="transition-all duration-300"
         style={{
-          background: '#fff',
-          borderBottom: '1px solid #e2e8f0',
-          boxShadow: scrolled ? '0 1px 3px rgba(0,0,0,.08)' : '0 1px 0 #e2e8f0',
+          background: scrolled ? 'rgba(15,30,60,0.97)' : 'rgba(15,30,60,0.9)',
+          borderBottom: '1px solid rgba(255,255,255,0.08)',
+          boxShadow: scrolled ? '0 2px 12px rgba(0,0,0,.25)' : 'none',
+          backdropFilter: 'blur(12px)',
         }}
       >
         <nav aria-label="Navigation principale" className="flex items-center" style={{ padding: '0 40px', height: '64px' }}>
           {/* Brand */}
           <Link href="/" className="flex items-center gap-[11px] no-underline shrink-0" style={{ marginRight: '40px' }}>
-            <div className="w-[38px] h-[38px] rounded-lg flex items-center justify-center text-[17px] font-black text-white" style={{ background: '#1d4ed8' }}>T</div>
+            <svg width="38" height="44" viewBox="0 0 38 44" fill="none" className="shrink-0">
+              <path d="M19 2L3 8.5V22C3 31 10 38.5 19 42C28 38.5 35 31 35 22V8.5L19 2Z" fill="#1d4ed8"/>
+              <path d="M19 2L3 8.5V22C3 31 10 38.5 19 42C28 38.5 35 31 35 22V8.5L19 2Z" fill="none" stroke="#1e40af" strokeWidth="1"/>
+              <text x="19" y="27" textAnchor="middle" fontFamily="'Space Grotesk', sans-serif" fontWeight="800" fontSize="13" fill="white">TSF</text>
+            </svg>
             <div>
-              <div className="text-[16px] font-extrabold" style={{ color: '#0b1630' }}>TSF Technology</div>
-              <div className="text-[10px] uppercase tracking-[1.5px]" style={{ color: '#64748b' }}>by Lannkin</div>
+              <div className="text-[17px] font-bold" style={{ color: '#ffffff', fontFamily: "'DM Sans', sans-serif", letterSpacing: '0.5px' }}>TSF Technology</div>
+              <div className="text-[9px] font-medium uppercase tracking-[2px]" style={{ color: '#64748b' }}>by Lannkin</div>
             </div>
           </Link>
 
@@ -139,7 +150,7 @@ export function Header() {
 
             {/* PRODUITS */}
             <div className="nav-item relative flex items-center">
-              <button aria-haspopup="true" className="nav-trigger flex items-center gap-[5px] h-[64px] text-[14px] font-medium border-0 bg-transparent cursor-pointer whitespace-nowrap transition-colors" style={{ padding: '0 16px', color: '#64748b' }}>
+              <button aria-haspopup="true" className="nav-trigger flex items-center gap-[5px] h-[64px] text-[14px] font-medium border-0 bg-transparent cursor-pointer whitespace-nowrap transition-colors" style={{ padding: '0 16px', color: '#cbd5e1' }}>
                 {t('products')}
                 <ChevronDown size={14} className="nav-chevron opacity-50 transition-transform" />
               </button>
@@ -196,7 +207,7 @@ export function Header() {
 
             {/* SOLUTIONS */}
             <div className="nav-item relative flex items-center">
-              <button aria-haspopup="true" className="nav-trigger flex items-center gap-[5px] h-[64px] text-[14px] font-medium border-0 bg-transparent cursor-pointer whitespace-nowrap transition-colors" style={{ padding: '0 16px', color: '#64748b' }}>
+              <button aria-haspopup="true" className="nav-trigger flex items-center gap-[5px] h-[64px] text-[14px] font-medium border-0 bg-transparent cursor-pointer whitespace-nowrap transition-colors" style={{ padding: '0 16px', color: '#cbd5e1' }}>
                 {t('solutions')}
                 <ChevronDown size={14} className="nav-chevron opacity-50 transition-transform" />
               </button>
@@ -221,7 +232,7 @@ export function Header() {
 
             {/* RESOURCES */}
             <div className="nav-item relative flex items-center">
-              <button aria-haspopup="true" className="nav-trigger flex items-center gap-[5px] h-[64px] text-[14px] font-medium border-0 bg-transparent cursor-pointer whitespace-nowrap transition-colors" style={{ padding: '0 16px', color: '#64748b' }}>
+              <button aria-haspopup="true" className="nav-trigger flex items-center gap-[5px] h-[64px] text-[14px] font-medium border-0 bg-transparent cursor-pointer whitespace-nowrap transition-colors" style={{ padding: '0 16px', color: '#cbd5e1' }}>
                 {t('resources')}
                 <ChevronDown size={14} className="nav-chevron opacity-50 transition-transform" />
               </button>
@@ -252,12 +263,12 @@ export function Header() {
 
             {/* Simple links */}
             <div className="nav-item relative flex items-center">
-              <Link href="/a-propos" className="nav-trigger flex items-center h-[64px] text-[14px] font-medium no-underline transition-colors" style={{ padding: '0 16px', color: '#64748b' }}>
+              <Link href="/a-propos" className="nav-trigger flex items-center h-[64px] text-[14px] font-medium no-underline transition-colors" style={{ padding: '0 16px', color: '#cbd5e1' }}>
                 {t('about')}
               </Link>
             </div>
             <div className="nav-item relative flex items-center">
-              <Link href="/contact" className="nav-trigger flex items-center h-[64px] text-[14px] font-medium no-underline transition-colors" style={{ padding: '0 16px', color: '#64748b' }}>
+              <Link href="/contact" className="nav-trigger flex items-center h-[64px] text-[14px] font-medium no-underline transition-colors" style={{ padding: '0 16px', color: '#cbd5e1' }}>
                 {t('contact')}
               </Link>
             </div>
@@ -280,7 +291,7 @@ export function Header() {
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="lg:hidden p-2 rounded-lg border-0 bg-transparent cursor-pointer"
-              style={{ color: '#0f172a' }}
+              style={{ color: '#e2e8f0' }}
               aria-label="Menu"
             >
               {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -345,10 +356,10 @@ export function Header() {
         .nav-trigger::after {
           content: '';
           position: absolute; bottom: 0; left: 16px; right: 16px;
-          height: 2px; background: #1d4ed8;
+          height: 2px; background: #60a5fa;
           transform: scaleX(0); transition: transform .25s;
         }
-        .nav-item:hover .nav-trigger { color: #1d4ed8 !important; }
+        .nav-item:hover .nav-trigger { color: #ffffff !important; }
         .nav-item:hover .nav-trigger::after { transform: scaleX(1); }
         .nav-item:hover .nav-chevron { transform: rotate(180deg); opacity: 1; }
 

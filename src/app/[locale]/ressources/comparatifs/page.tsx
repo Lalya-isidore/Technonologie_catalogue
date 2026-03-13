@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { BarChart3 } from 'lucide-react';
 import { generateMetadata as generateSeoMetadata, generateFaqJsonLd } from '@/lib/seo';
 import { getFaqsByPage } from '@/data/faq';

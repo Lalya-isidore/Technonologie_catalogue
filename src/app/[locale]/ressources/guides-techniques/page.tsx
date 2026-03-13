@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { FileText, ArrowRight } from 'lucide-react';
 import { generateMetadata as generateSeoMetadata } from '@/lib/seo';
 import type { Locale } from '@/lib/types';

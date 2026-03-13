@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import { Search, ChevronDown, ArrowRight, HelpCircle } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import type { FAQ } from '@/lib/types';
 import type { Locale } from '@/i18n/routing';
 

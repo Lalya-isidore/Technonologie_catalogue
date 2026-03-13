@@ -11,8 +11,7 @@ const localeMap: Record<Locale, string> = {
 };
 
 function getBaseUrl(locale: Locale, path: string = ''): string {
-  const prefix = locale === 'fr' ? '' : `/${locale}`;
-  return `${SITE.domain}${prefix}${path}`;
+  return `${SITE.domain}/${locale}${path}`;
 }
 
 export function generateHreflangLinks(path: Record<Locale, string>) {
@@ -117,7 +116,7 @@ export function generateWebSiteJsonLd() {
       '@type': 'SearchAction',
       target: {
         '@type': 'EntryPoint',
-        urlTemplate: `${SITE.domain}/produits?q={search_term_string}`,
+        urlTemplate: `${SITE.domain}/fr/produits?q={search_term_string}`,
       },
       'query-input': 'required name=search_term_string',
     },
@@ -240,7 +239,7 @@ export function generateArticleJsonLd({
   author?: string;
   image?: string;
 }) {
-  const prefix = locale === 'fr' ? '' : `/${locale}`;
+  const prefix = `/${locale}`;
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -267,7 +266,7 @@ export function generateDefinedTermSetJsonLd(
   terms: { term: string; definition: string }[],
   locale: Locale
 ) {
-  const prefix = locale === 'fr' ? '' : `/${locale}`;
+  const prefix = `/${locale}`;
   return {
     '@context': 'https://schema.org',
     '@type': 'DefinedTermSet',

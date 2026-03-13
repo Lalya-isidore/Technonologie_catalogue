@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import {
   Shield, Thermometer, Award, Headphones, Briefcase,
@@ -91,12 +91,11 @@ export function Footer() {
         {/* Brand column */}
         <div>
           <div className="flex items-center gap-3 mb-4">
-            <div
-              className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 text-[18px] font-black text-white"
-              style={{ background: '#1d4ed8' }}
-            >
-              T
-            </div>
+            <svg width="34" height="40" viewBox="0 0 38 44" fill="none" className="shrink-0">
+              <path d="M19 2L3 8.5V22C3 31 10 38.5 19 42C28 38.5 35 31 35 22V8.5L19 2Z" fill="#1d4ed8"/>
+              <path d="M19 2L3 8.5V22C3 31 10 38.5 19 42C28 38.5 35 31 35 22V8.5L19 2Z" fill="none" stroke="#1e40af" strokeWidth="1"/>
+              <text x="19" y="27" textAnchor="middle" fontFamily="'Space Grotesk', sans-serif" fontWeight="800" fontSize="13" fill="white">TSF</text>
+            </svg>
             <div>
               <div className="text-[17px] font-extrabold text-white">{tFooter('brandName')}</div>
               <div className="text-[10px] uppercase tracking-[2px]" style={{ color: '#475569' }}>
@@ -286,7 +285,7 @@ export function Footer() {
         style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}
       >
         <span className="font-mono text-[11px]" style={{ color: '#475569' }}>
-          &copy; 2025 <span style={{ color: '#cbd5e1' }}>TSF Technology</span> &mdash; Tous droits r&eacute;serv&eacute;s
+          &copy; 2026 <span style={{ color: '#cbd5e1' }}>TSF Technology</span> &mdash; Tous droits r&eacute;serv&eacute;s
         </span>
 
         <div className="flex gap-2">

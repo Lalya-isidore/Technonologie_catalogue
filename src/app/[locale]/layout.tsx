@@ -7,6 +7,7 @@ import { HtmlLangSetter } from './html-lang-setter';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CookieConsent } from '@/components/ui/CookieConsent';
+import { WhatsAppFab } from '@/components/ui/WhatsAppFab';
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
 
 export function generateStaticParams() {
@@ -43,6 +44,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         {children}
       </div>
       <Footer />
+      <WhatsAppFab />
       <CookieConsent />
       <GoogleAnalytics />
     </NextIntlClientProvider>

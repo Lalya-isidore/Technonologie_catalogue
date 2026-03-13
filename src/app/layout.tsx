@@ -47,6 +47,9 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
   },
+  icons: {
+    icon: '/icon.svg',
+  },
   robots: {
     index: true,
     follow: true,

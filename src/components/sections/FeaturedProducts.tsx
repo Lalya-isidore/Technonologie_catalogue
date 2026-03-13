@@ -4,7 +4,7 @@ import { useState, useCallback } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { getBestsellers, getNewProducts } from '@/data/products';
 import { getProductImages } from '@/data/product-images';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import Image from 'next/image';
 import type { Product, Locale } from '@/lib/types';
 

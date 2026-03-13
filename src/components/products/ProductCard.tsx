@@ -1,11 +1,11 @@
 'use client';
 
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import type { Product } from '@/lib/types';
 import type { Locale } from '@/lib/types';
 
-import { Network, Gauge, LayoutGrid, Shield, Thermometer, GitCompare, Heart, ArrowRight } from 'lucide-react';
+import { Gauge, LayoutGrid, Shield, Thermometer, GitCompare, Heart, ArrowRight } from 'lucide-react';
 
 type Props = {
   product: Product;
@@ -62,19 +62,12 @@ export function ProductCard({ product, index = 0 }: Props) {
           background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)',
         }}
       >
-        {/* Dot grid pattern */}
-        <svg className="absolute inset-0 w-full h-full opacity-[0.35]">
-          <defs>
-            <pattern id={`dotGrid-${product.id}`} x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-              <circle cx="2" cy="2" r="1" fill="#cbd5e1" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill={`url(#dotGrid-${product.id})`} />
-        </svg>
-        {/* Network icon */}
-        <div className="relative transition-transform duration-300 group-hover:scale-110" style={{ color: '#94a3b8' }}>
-          <Network size={56} strokeWidth={1} />
-        </div>
+        <img
+          src={product.images[0]}
+          alt={product.name[locale]}
+          className="relative w-full h-full object-contain p-4 transition-transform duration-300 group-hover:scale-110"
+          loading="lazy"
+        />
       </div>
 
       {/* Content */}

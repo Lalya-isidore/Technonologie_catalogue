@@ -37,7 +37,7 @@ export default async function ProductsPage({ params }: Props) {
       {faqs.length > 0 && (
         <>
           <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(generateFaqJsonLd(faqs, loc)) }} />
-          <FAQSection faqs={faqs} locale={loc} title="Questions fréquentes — Catalogue" />
+          <FAQSection faqs={faqs} locale={loc} title="Questions fréquentes — Catalogue" showSidebar />
         </>
       )}
     </main>

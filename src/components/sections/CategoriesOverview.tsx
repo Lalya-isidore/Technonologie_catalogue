@@ -1,24 +1,39 @@
 'use client';
 
-import Link from 'next/link';
+import { useState, useMemo } from 'react';
+import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { Server, Network, Plug, Zap, Clock, Cpu, MessageSquare, ArrowRight } from 'lucide-react';
 
+type FilterGroup = 'all' | 'switches' | 'routers' | 'iot';
 
 const CATEGORIES = [
-  { key: 'layer3DinRail', href: '/produits/switches-ethernet/layer-3-din-rail', icon: Server, count: 2, iconClass: 'cat-icon-blue' },
-  { key: 'layer3Rack', href: '/produits/switches-ethernet/layer-3-rack', icon: Server, count: 8, iconClass: 'cat-icon-navy' },
-  { key: 'layer2ManagedRack', href: '/produits/switches-ethernet/layer-2-managed-rack', icon: Network, count: 16, iconClass: 'cat-icon-blue' },
-  { key: 'layer2ManagedDinRail', href: '/produits/switches-ethernet/layer-2-managed-din-rail', icon: Network, count: 19, iconClass: 'cat-icon-slate' },
-  { key: 'unmanagedRack', href: '/produits/switches-ethernet/unmanaged-rack', icon: Plug, count: 13, iconClass: 'cat-icon-slate' },
-  { key: 'unmanagedDinRail', href: '/produits/switches-ethernet/unmanaged-din-rail', icon: Plug, count: 19, iconClass: 'cat-icon-slate' },
-  { key: 'poeSwitches', href: '/produits/switches-ethernet/poe', icon: Zap, count: 7, iconClass: 'cat-icon-orange' },
-  { key: 'tsnPtp', href: '/produits/switches-ethernet/tsn-ptp', icon: Clock, count: 5, iconClass: 'cat-icon-green' },
-  { key: 'compactSwitches', href: '/produits/switches-ethernet/compact', icon: Cpu, count: 12, iconClass: 'cat-icon-teal' },
+  { key: 'layer3DinRail', href: '/produits/switches-ethernet/layer-3-din-rail', icon: Server, count: 2, iconClass: 'cat-icon-blue', group: 'routers' as FilterGroup },
+  { key: 'layer3Rack', href: '/produits/switches-ethernet/layer-3-rack', icon: Server, count: 8, iconClass: 'cat-icon-navy', group: 'routers' as FilterGroup },
+  { key: 'layer2ManagedRack', href: '/produits/switches-ethernet/layer-2-managed-rack', icon: Network, count: 16, iconClass: 'cat-icon-blue', group: 'switches' as FilterGroup },
+  { key: 'layer2ManagedDinRail', href: '/produits/switches-ethernet/layer-2-managed-din-rail', icon: Network, count: 19, iconClass: 'cat-icon-slate', group: 'switches' as FilterGroup },
+  { key: 'unmanagedRack', href: '/produits/switches-ethernet/unmanaged-rack', icon: Plug, count: 13, iconClass: 'cat-icon-slate', group: 'switches' as FilterGroup },
+  { key: 'unmanagedDinRail', href: '/produits/switches-ethernet/unmanaged-din-rail', icon: Plug, count: 19, iconClass: 'cat-icon-slate', group: 'switches' as FilterGroup },
+  { key: 'poeSwitches', href: '/produits/switches-ethernet/poe', icon: Zap, count: 7, iconClass: 'cat-icon-orange', group: 'iot' as FilterGroup },
+  { key: 'tsnPtp', href: '/produits/switches-ethernet/tsn-ptp', icon: Clock, count: 5, iconClass: 'cat-icon-green', group: 'iot' as FilterGroup },
+  { key: 'compactSwitches', href: '/produits/switches-ethernet/compact', icon: Cpu, count: 12, iconClass: 'cat-icon-teal', group: 'iot' as FilterGroup },
 ] as const;
+
+const FILTERS: { key: FilterGroup; label: string }[] = [
+  { key: 'all', label: 'Tous' },
+  { key: 'switches', label: 'Switches' },
+  { key: 'routers', label: 'Routers' },
+  { key: 'iot', label: 'IoT' },
+];
 
 export function CategoriesOverview() {
   const t = useTranslations('nav');
+  const [activeFilter, setActiveFilter] = useState<FilterGroup>('all');
+
+  const filteredCategories = useMemo(() => {
+    if (activeFilter === 'all') return CATEGORIES;
+    return CATEGORIES.filter((c) => c.group === activeFilter);
+  }, [activeFilter]);
 
   return (
     <section style={{ background: '#f4f7fc' }} className="pt-8 pb-16 lg:pt-10 lg:pb-20">
@@ -50,25 +65,29 @@ export function CategoriesOverview() {
             </p>
           </div>
           <div className="flex gap-3 items-center shrink-0 flex-wrap">
-            {['Tous', 'Switches', 'Routers', 'IoT'].map((label, i) => (
-              <button
-                key={label}
-                className="px-[18px] py-2 rounded-full text-[13px] font-medium cursor-pointer transition-all"
-                style={{
-                  background: i === 0 ? '#1d4ed8' : '#fff',
-                  color: i === 0 ? '#fff' : '#64748b',
-                  border: i === 0 ? '1.5px solid #1d4ed8' : '1.5px solid #e2e8f0',
-                }}
-              >
-                {label}
-              </button>
-            ))}
+            {FILTERS.map(({ key, label }) => {
+              const isActive = activeFilter === key;
+              return (
+                <button
+                  key={key}
+                  onClick={() => setActiveFilter(key)}
+                  className="px-[18px] py-2 rounded-full text-[13px] font-medium cursor-pointer transition-all duration-200"
+                  style={{
+                    background: isActive ? '#1d4ed8' : '#fff',
+                    color: isActive ? '#fff' : '#64748b',
+                    border: isActive ? '1.5px solid #1d4ed8' : '1.5px solid #e2e8f0',
+                  }}
+                >
+                  {label}
+                </button>
+              );
+            })}
           </div>
         </div>
 
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {CATEGORIES.map(({ key, href, icon: Icon, count, iconClass }, i) => (
+          {filteredCategories.map(({ key, href, icon: Icon, count, iconClass }, i) => (
             <Link
               key={key}
               href={href}

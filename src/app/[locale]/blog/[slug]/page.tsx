@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { getAllBlogPosts, getBlogPostBySlug } from '@/data/blog';
 import type { Locale } from '@/lib/types';
 import { Clock, ArrowLeft } from 'lucide-react';

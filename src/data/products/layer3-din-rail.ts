@@ -90,7 +90,7 @@ export const layer3DinRailProducts: Product[] = [
     },
     isNew: false,
     isBestseller: false,
-    images: ['/images/products/placeholder.jpg'],
+    images: ['/images/products/compact-profinet-gbe-8-ports-1.jpg', '/images/products/compact-profinet-gbe-8-ports-2.jpg', '/images/products/compact-profinet-gbe-8-ports-3.webp'],
   },
   {
     id: 'tsf-s8220gx-4xgf-8gf-8gt',
@@ -181,6 +181,6 @@ export const layer3DinRailProducts: Product[] = [
     },
     isNew: false,
     isBestseller: false,
-    images: ['/images/products/placeholder.jpg'],
+    images: ['/images/products/compact-profinet-gbe-8-ports-1.jpg', '/images/products/compact-profinet-gbe-8-ports-2.jpg', '/images/products/compact-profinet-gbe-8-ports-3.webp'],
   },
 ];

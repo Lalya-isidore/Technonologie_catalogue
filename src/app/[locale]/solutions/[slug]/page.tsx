@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { ArrowRight, CheckCircle, MessageCircle } from 'lucide-react';
 import { InternalLinks } from '@/components/sections/InternalLinks';
 import { getRelatedCategoryLinks, getRelatedSolutionLinks, getResourceLinks } from '@/lib/internal-links';

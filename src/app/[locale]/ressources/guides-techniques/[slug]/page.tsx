@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { ArrowLeft, ArrowRight, Clock, FileText } from 'lucide-react';
 import { getGuideBySlug, getAllGuides } from '@/data/guides';
 import { generateMetadata as generateSeoMetadata, generateBreadcrumbJsonLd } from '@/lib/seo';

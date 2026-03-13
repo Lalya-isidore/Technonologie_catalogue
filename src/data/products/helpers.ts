@@ -78,8 +78,74 @@ export function createProduct(spec: ProductSpec): Product {
     },
     isNew: spec.isNew || false,
     isBestseller: spec.isBestseller || false,
-    images: ['/images/products/placeholder.jpg'],
+    images: getProductImages(spec),
   };
+}
+
+function getProductImages(spec: ProductSpec): string[] {
+  const { sku, subcategory, totalPorts } = spec;
+  const P = '/images/products';
+
+  // ── Compact PROFINET Gigabit ──
+  if (sku.includes('C3') && sku.includes('PN')) {
+    if (totalPorts >= 8) return [`${P}/compact-profinet-gbe-8-ports-1.jpg`, `${P}/compact-profinet-gbe-8-ports-2.jpg`, `${P}/compact-profinet-gbe-8-ports-3.webp`];
+    return [`${P}/compact-profinet-gbe-5-ports-1.jpg`, `${P}/compact-profinet-gbe-5-ports-2.jpg`, `${P}/compact-profinet-gbe-5-ports-3.jpg`, `${P}/compact-profinet-gbe-5-ports-4.jpg`];
+  }
+
+  // ── Compact PROFINET FE ──
+  if (sku.includes('C2') && sku.includes('PN')) {
+    if (totalPorts >= 8) return [`${P}/compact-profinet-8-ports-1.jpg`, `${P}/compact-profinet-8-ports-2.jpg`, `${P}/compact-profinet-8-ports-3.jpg`, `${P}/compact-profinet-8-ports-4.webp`];
+    return [`${P}/compact-profinet-5-ports-1.jpg`, `${P}/compact-profinet-5-ports-2.jpg`, `${P}/compact-profinet-5-ports-3.jpg`, `${P}/compact-profinet-5-ports-4.webp`];
+  }
+
+  // ── Compact generic (FE, GbE, EtherCAT) ──
+  if (subcategory === 'compacts') {
+    return [`${P}/compact-5-ports-1.jpg`, `${P}/compact-5-ports-2.jpg`, `${P}/compact-5-ports-3.webp`];
+  }
+
+  // ── Layer 3 Rack ──
+  if (subcategory === 'layer-3-rack') {
+    if (totalPorts >= 48) return [`${P}/layer3-rack-52-ports-1.jpg`, `${P}/layer3-rack-52-ports-2.jpg`, `${P}/layer3-rack-52-ports-3.jpg`];
+    return [`${P}/layer3-rack-28-ports-1.jpg`, `${P}/layer3-rack-28-ports-2.jpg`, `${P}/layer3-rack-28-ports-3.jpg`, `${P}/layer3-rack-28-ports-4.jpg`];
+  }
+
+  // ── Layer 3 DIN-Rail ──
+  if (subcategory === 'layer-3-din-rail') {
+    return [`${P}/compact-profinet-gbe-8-ports-1.jpg`, `${P}/compact-profinet-gbe-8-ports-2.jpg`, `${P}/compact-profinet-gbe-8-ports-3.webp`];
+  }
+
+  // ── Layer 2 Managed Rack ──
+  if (subcategory === 'layer-2-managed-rack') {
+    return [`${P}/category-layer3.webp`, `${P}/layer3-rack-28-ports-1.jpg`, `${P}/layer3-rack-28-ports-2.jpg`];
+  }
+
+  // ── Layer 2 Managed DIN-Rail ──
+  if (subcategory === 'layer-2-managed-din-rail') {
+    return [`${P}/compact-profinet-5-ports-1.jpg`, `${P}/compact-profinet-5-ports-2.jpg`, `${P}/compact-5-ports-1.jpg`];
+  }
+
+  // ── Non-Managed Rack ──
+  if (subcategory === 'non-managed-rack') {
+    return [`${P}/industrial-rack-24x1g-rj45-4x10g-sfp.webp`, `${P}/category-layer3.webp`, `${P}/layer3-rack-28-ports-1.jpg`];
+  }
+
+  // ── Non-Managed DIN-Rail ──
+  if (subcategory === 'non-managed-din-rail') {
+    return [`${P}/compact-5-ports-1.jpg`, `${P}/compact-5-ports-2.jpg`, `${P}/compact-5-ports-3.webp`];
+  }
+
+  // ── PoE ──
+  if (subcategory === 'poe-industriel') {
+    return [`${P}/poe-rack-28-ports-1.jpg`, `${P}/poe-rack-28-ports-2.jpg`, `${P}/poe-rack-28-ports-3.png`];
+  }
+
+  // ── TSN / PTP ──
+  if (subcategory === 'tsn-ptp-ieee-1588') {
+    return [`${P}/category-layer3.webp`, `${P}/layer3-rack-28-ports-1.jpg`, `${P}/layer3-rack-28-ports-3.jpg`];
+  }
+
+  // Fallback
+  return [`${P}/category-industrial.jpg`];
 }
 
 export function ls(fr: string, en: string, es: string, it: string, ar: string, ru: string): LocalizedString {
