@@ -31,15 +31,15 @@ const MEGA_COL_2 = [
 ];
 
 const MEGA_COL_3 = [
-  { key: 'serialServers', href: '/produits/equipements-reseau/serveurs-ports-serie', icon: ArrowRight, sub: 'RS232/485 over IP' },
-  { key: 'canConverters', href: '/produits/equipements-reseau/convertisseurs-can', icon: Cpu },
-  { key: 'fiberModems', href: '/produits/equipements-reseau/modems-fibre-optique', icon: BarChart3, sub: 'Longue distance' },
+  { key: 'serialServers', href: '/produits', icon: ArrowRight, sub: 'RS232/485 over IP' },
+  { key: 'canConverters', href: '/produits', icon: Cpu },
+  { key: 'fiberModems', href: '/produits', icon: BarChart3, sub: 'Longue distance' },
 ];
 
 const MEGA_COL_4 = [
-  { key: 'routers4g5g', href: '/produits/solutions-sans-fil/routeurs-4g-5g', icon: Wifi, sub: 'Dual SIM \u00b7 VPN \u00b7 GPS' },
-  { key: 'wifi6AP', href: '/produits/solutions-sans-fil/wifi-6', icon: Wifi, sub: 'Outdoor IP67' },
-  { key: 'embeddedModules', href: '/produits/solutions-sans-fil/modules-embarques', icon: Cpu, sub: 'IoT \u00b7 Edge computing' },
+  { key: 'routers4g5g', href: '/produits', icon: Wifi, sub: 'Dual SIM \u00b7 VPN \u00b7 GPS' },
+  { key: 'wifi6AP', href: '/produits', icon: Wifi, sub: 'Outdoor IP67' },
+  { key: 'embeddedModules', href: '/produits', icon: Cpu, sub: 'IoT \u00b7 Edge computing' },
 ];
 
 const SOLUTIONS = [
@@ -191,10 +191,10 @@ export function Header() {
                 {/* Bottom strip */}
                 <div className="flex items-center justify-between" style={{ padding: '14px 28px', background: '#f8fafc' }}>
                   <div className="flex gap-1.5">
-                    <Link href="/logiciels/mixconnect" className="nav-soft-link inline-flex items-center gap-1.5 rounded-md text-[12.5px] no-underline transition-all" style={{ padding: '6px 12px', background: '#fff', border: '1px solid #e2e8f0', color: '#64748b' }}>
+                    <Link href="/produits" className="nav-soft-link inline-flex items-center gap-1.5 rounded-md text-[12.5px] no-underline transition-all" style={{ padding: '6px 12px', background: '#fff', border: '1px solid #e2e8f0', color: '#64748b' }}>
                       <Cloud size={13} /> {t('mixconnect')}
                     </Link>
-                    <Link href="/logiciels/maxcloud" className="nav-soft-link inline-flex items-center gap-1.5 rounded-md text-[12.5px] no-underline transition-all" style={{ padding: '6px 12px', background: '#fff', border: '1px solid #e2e8f0', color: '#64748b' }}>
+                    <Link href="/produits" className="nav-soft-link inline-flex items-center gap-1.5 rounded-md text-[12.5px] no-underline transition-all" style={{ padding: '6px 12px', background: '#fff', border: '1px solid #e2e8f0', color: '#64748b' }}>
                       <Bolt size={13} /> {t('maxcloud')}
                     </Link>
                   </div>
@@ -246,13 +246,13 @@ export function Header() {
                   </Link>
                 ))}
                 <div className="h-px my-1.5 mx-2" style={{ background: '#e2e8f0' }} />
-                <Link href="/ressources/formation" className="nav-simple-link flex items-center gap-2.5 rounded-lg text-[13.5px] no-underline transition-all" style={{ padding: '10px 12px', color: '#0f172a' }}>
+                <Link href="/ressources/guides-techniques" className="nav-simple-link flex items-center gap-2.5 rounded-lg text-[13.5px] no-underline transition-all" style={{ padding: '10px 12px', color: '#0f172a' }}>
                   <span className="nav-simple-icon w-[30px] h-[30px] rounded-[7px] flex items-center justify-center shrink-0 transition-colors" style={{ background: '#f8fafc', border: '1px solid #e2e8f0' }}>
                     <GraduationCap size={14} />
                   </span>
                   Centre de Formation
                 </Link>
-                <Link href="/ressources/telechargements" className="nav-simple-link flex items-center gap-2.5 rounded-lg text-[13.5px] no-underline transition-all" style={{ padding: '10px 12px', color: '#0f172a' }}>
+                <Link href="/ressources/guides-techniques" className="nav-simple-link flex items-center gap-2.5 rounded-lg text-[13.5px] no-underline transition-all" style={{ padding: '10px 12px', color: '#0f172a' }}>
                   <span className="nav-simple-icon w-[30px] h-[30px] rounded-[7px] flex items-center justify-center shrink-0 transition-colors" style={{ background: '#f8fafc', border: '1px solid #e2e8f0' }}>
                     <Download size={14} />
                   </span>

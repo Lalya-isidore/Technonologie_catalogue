@@ -12,7 +12,7 @@ const PRODUCT_LINKS = [
   { key: 'poeSwitches', href: '/produits/switches-ethernet/poe' },
   { key: 'tsnPtp', href: '/produits/switches-ethernet/tsn-ptp' },
   { key: 'compactSwitches', href: '/produits/switches-ethernet/compact' },
-  { key: 'routers4g5g', href: '/produits/solutions-sans-fil/routeurs-4g-5g', isNew: true },
+  { key: 'routers4g5g', href: '/produits', isNew: true },
 ];
 
 const SOLUTION_LINKS = [
@@ -315,7 +315,7 @@ export function Footer() {
           <Link href="/confidentialite" className="ftr-bottom-link text-[12px] no-underline transition-colors" style={{ color: '#475569' }}>
             Confidentialit&eacute;
           </Link>
-          <Link href="/sitemap" className="ftr-bottom-link text-[12px] no-underline transition-colors" style={{ color: '#475569' }}>
+          <Link href="/" className="ftr-bottom-link text-[12px] no-underline transition-colors" style={{ color: '#475569' }}>
             {tFooter('sitemap')}
           </Link>
         </div>
