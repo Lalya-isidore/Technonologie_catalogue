@@ -245,52 +245,24 @@ export function HeroSection() {
         className="relative min-h-[75vh] lg:min-h-screen flex items-start lg:items-center overflow-hidden pt-[40px] lg:pt-[108px]"
         style={{ background: '#0b1630' }}
       >
-        {/* Circuit board background pattern */}
-        <div className="absolute inset-0 pointer-events-none" style={{ opacity: 0.12 }}>
-          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="circuit" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
-                {/* Horizontal traces */}
-                <line x1="0" y1="40" x2="60" y2="40" stroke="#38bdf8" strokeWidth="1.5"/>
-                <line x1="80" y1="40" x2="200" y2="40" stroke="#38bdf8" strokeWidth="1"/>
-                <line x1="0" y1="100" x2="120" y2="100" stroke="#60a5fa" strokeWidth="1"/>
-                <line x1="140" y1="100" x2="200" y2="100" stroke="#38bdf8" strokeWidth="1.5"/>
-                <line x1="0" y1="160" x2="80" y2="160" stroke="#60a5fa" strokeWidth="1"/>
-                <line x1="100" y1="160" x2="200" y2="160" stroke="#38bdf8" strokeWidth="1"/>
-                {/* Vertical traces */}
-                <line x1="60" y1="0" x2="60" y2="40" stroke="#38bdf8" strokeWidth="1"/>
-                <line x1="60" y1="40" x2="60" y2="100" stroke="#60a5fa" strokeWidth="0.8"/>
-                <line x1="140" y1="60" x2="140" y2="140" stroke="#38bdf8" strokeWidth="1"/>
-                <line x1="100" y1="120" x2="100" y2="200" stroke="#60a5fa" strokeWidth="0.8"/>
-                {/* Junction dots */}
-                <circle cx="60" cy="40" r="3" fill="#38bdf8"/>
-                <circle cx="140" cy="100" r="3" fill="#60a5fa"/>
-                <circle cx="100" cy="160" r="3" fill="#38bdf8"/>
-                <circle cx="80" cy="40" r="2" fill="#60a5fa"/>
-                <circle cx="120" cy="100" r="2" fill="#38bdf8"/>
-                {/* IC chip shapes */}
-                <rect x="25" y="70" width="16" height="20" rx="2" fill="none" stroke="#38bdf8" strokeWidth="1"/>
-                <line x1="25" y1="75" x2="18" y2="75" stroke="#38bdf8" strokeWidth="0.8"/>
-                <line x1="25" y1="80" x2="18" y2="80" stroke="#38bdf8" strokeWidth="0.8"/>
-                <line x1="25" y1="85" x2="18" y2="85" stroke="#38bdf8" strokeWidth="0.8"/>
-                <line x1="41" y1="75" x2="48" y2="75" stroke="#38bdf8" strokeWidth="0.8"/>
-                <line x1="41" y1="80" x2="48" y2="80" stroke="#38bdf8" strokeWidth="0.8"/>
-                <line x1="41" y1="85" x2="48" y2="85" stroke="#38bdf8" strokeWidth="0.8"/>
-                {/* Small components */}
-                <rect x="150" y="30" width="12" height="6" rx="1" fill="none" stroke="#60a5fa" strokeWidth="0.8"/>
-                <rect x="165" y="150" width="12" height="6" rx="1" fill="none" stroke="#38bdf8" strokeWidth="0.8"/>
-                {/* Diagonal traces */}
-                <line x1="80" y1="40" x2="100" y2="60" stroke="#60a5fa" strokeWidth="0.8"/>
-                <line x1="140" y1="140" x2="160" y2="160" stroke="#38bdf8" strokeWidth="0.8"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#circuit)"/>
-          </svg>
-        </div>
+        {/* Hero background image */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: 'url(/images/hero-bg.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
+        />
 
-        {/* Background gradient overlays */}
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 80% 60% at 20% 50%, rgba(29,78,216,0.25) 0%, transparent 70%)' }} />
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 50% at 80% 30%, rgba(56,189,248,0.1) 0%, transparent 60%)' }} />
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(11,22,48,0.72)' }} />
+
+        {/* Blue tint overlay */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 80% 60% at 20% 50%, rgba(29,78,216,0.2) 0%, transparent 70%)' }} />
+
+        {/* Bottom gradient fade */}
         <div className="absolute bottom-0 left-0 right-0 h-[200px] pointer-events-none" style={{ background: 'linear-gradient(to top, #0b1630, transparent)' }} />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-10 w-full z-[2]">
