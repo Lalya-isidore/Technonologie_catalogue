@@ -66,7 +66,7 @@ export function Footer() {
           {BAND_ITEMS.map(({ icon: Icon, label }, i) => (
             <div key={label} className="flex items-center gap-0">
               <div className="flex items-center gap-[7px] text-[12px] font-medium" style={{ color: '#cbd5e1' }}>
-                <Icon size={14} style={{ color: '#38bdf8' }} />
+                <Icon size={16} style={{ color: '#38bdf8' }} />
                 {label}
               </div>
               {i < BAND_ITEMS.length - 1 && (
@@ -292,12 +292,12 @@ export function Footer() {
           {['CE', 'FCC', 'UL', 'RoHS'].map((cert) => (
             <span
               key={cert}
-              className="font-mono text-[10px] font-bold rounded"
+              className="font-mono text-[10px] font-bold rounded-md"
               style={{
-                color: '#38bdf8',
-                background: 'rgba(56,189,248,0.08)',
-                border: '1px solid rgba(56,189,248,0.2)',
-                padding: '3px 9px',
+                color: '#e2e8f0',
+                background: 'rgba(255,255,255,0.06)',
+                border: '1px solid rgba(255,255,255,0.12)',
+                padding: '4px 10px',
               }}
             >
               {cert}

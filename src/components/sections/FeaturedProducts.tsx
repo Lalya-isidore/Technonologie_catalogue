@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { getBestsellers, getNewProducts } from '@/data/products';
 import { getProductImages } from '@/data/product-images';
@@ -82,16 +82,32 @@ function FeaturedCard({ product, index }: { product: Product; index: number }) {
   const locale = useLocale() as Locale;
   const t = useTranslations('common');
   const images = getProductImages(product.sku);
+  const cardRef = useRef<HTMLAnchorElement>(null);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    const card = cardRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    card.style.transform = `perspective(1000px) rotateY(${x * 4}deg) rotateX(${-y * 4}deg) translateY(-6px)`;
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    const card = cardRef.current;
+    if (card) card.style.transform = '';
+  }, []);
 
   return (
     <Link
+      ref={cardRef}
       href={`/produits/${product.slug[locale]}`}
-      className="prod-card group relative bg-white rounded-2xl flex flex-col no-underline overflow-hidden transition-all duration-300 hover:-translate-y-1"
+      className="prod-card group relative bg-white flex flex-col no-underline overflow-hidden card-elevated"
       style={{
-        border: '1.5px solid #e2e8f0',
-        boxShadow: '0 1px 3px rgba(15,34,87,0.06)',
         animationDelay: `${0.08 + index * 0.07}s`,
       }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
     >
       {/* Top blue gradient line on hover */}
       <span
@@ -208,7 +224,7 @@ export function FeaturedProducts() {
   const featured = [...bestsellers, ...newProducts].slice(0, 8);
 
   return (
-    <section className="py-20 lg:py-24 bg-white">
+    <section className="py-20 lg:py-24" style={{ background: '#f8fafc' }}>
       <div className="max-w-[1280px] mx-auto px-6 sm:px-12">
         {/* Header */}
         <div className="flex items-end justify-between" style={{ marginBottom: '40px' }}>
@@ -266,12 +282,10 @@ export function FeaturedProducts() {
           opacity: 0;
           transform: translateY(20px);
           animation: prodCardReveal 0.5s forwards;
+          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s, border-color 0.3s;
         }
         @keyframes prodCardReveal {
           to { opacity: 1; transform: translateY(0); }
-        }
-        .prod-card:hover {
-          box-shadow: 0 12px 28px rgba(15,34,87,0.12), 0 4px 12px rgba(15,34,87,0.06) !important;
         }
       `}} />
     </section>

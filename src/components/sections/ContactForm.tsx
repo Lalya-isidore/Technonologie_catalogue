@@ -40,19 +40,19 @@ export function ContactForm({ isQuote = false }: Props) {
   return (
     <>
       {/* ── HERO ── */}
-      <div style={{ background: '#0b1630', padding: '56px 40px', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: -80, right: -80, width: 500, height: 500, background: 'radial-gradient(circle, rgba(29,78,216,0.2), transparent 60%)', pointerEvents: 'none' }} />
+      <div style={{ background: 'linear-gradient(180deg, #ffffff 0%, #f0f4ff 100%)', padding: '56px 40px', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', top: -80, right: -80, width: 500, height: 500, background: 'radial-gradient(circle, rgba(29,78,216,0.06), transparent 60%)', pointerEvents: 'none' }} />
         <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}
           className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
         >
           <div>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 999, padding: '5px 14px', fontSize: 11, color: '#94a3b8', fontWeight: 600, letterSpacing: 0.5, marginBottom: 18 }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: '#f0f4ff', border: '1px solid rgba(29,78,216,0.15)', borderRadius: 999, padding: '5px 14px', fontSize: 11, color: '#1d4ed8', fontWeight: 600, letterSpacing: 0.5, marginBottom: 18 }}>
               Parlons de votre projet
             </div>
-            <h1 style={{ fontSize: 36, fontWeight: 800, color: '#fff', letterSpacing: -0.5, marginBottom: 12 }}>
+            <h1 style={{ fontSize: 36, fontWeight: 800, color: '#0f2257', letterSpacing: -0.5, marginBottom: 12 }}>
               {isQuote ? 'Demander un\nDevis Gratuit' : "Contactez\nl'équipe TSF"}
             </h1>
-            <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.75, marginBottom: 24 }}>
+            <p style={{ fontSize: 14, color: '#64748b', lineHeight: 1.75, marginBottom: 24 }}>
               Devis gratuit, assistance technique, ou simple question — nous répondons en moins de 2 heures, 7j/7.
             </p>
 
@@ -65,10 +65,10 @@ export function ContactForm({ isQuote = false }: Props) {
                 { href: '#form', icon: <Send size={15} />, iconBg: 'rgba(45,212,191,0.15)', iconColor: '#2dd4bf', label: 'Formulaire', sub: 'Réponse sous 24h' },
               ].map((ch) => (
                 <a key={ch.label} href={ch.href} target={ch.href.startsWith('http') ? '_blank' : undefined} rel={ch.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  style={{ display: 'flex', alignItems: 'center', gap: 10, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8, padding: '12px 14px', textDecoration: 'none', transition: 'all .2s' }}>
+                  style={{ display: 'flex', alignItems: 'center', gap: 10, background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '12px 14px', textDecoration: 'none', transition: 'all .2s', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
                   <div style={{ width: 32, height: 32, borderRadius: 7, background: ch.iconBg, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, color: ch.iconColor }}>{ch.icon}</div>
                   <div>
-                    <div style={{ fontSize: 12, fontWeight: 700, color: '#fff' }}>{ch.label}</div>
+                    <div style={{ fontSize: 12, fontWeight: 700, color: '#0f2257' }}>{ch.label}</div>
                     <div style={{ fontSize: 10, color: '#64748b' }}>{ch.sub}</div>
                   </div>
                 </a>
@@ -77,7 +77,7 @@ export function ContactForm({ isQuote = false }: Props) {
           </div>
 
           {/* Response time card */}
-          <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 12, padding: 20 }}>
+          <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: 16, padding: 20, boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1.5, textTransform: 'uppercase', color: '#64748b', marginBottom: 14 }}>Délais de réponse garantis</div>
             {[
               { color: '#22c55e', label: 'WhatsApp', time: 'Réponse en moins de 2h' },
@@ -85,9 +85,9 @@ export function ContactForm({ isQuote = false }: Props) {
               { color: '#f97316', label: 'Devis', time: 'Envoi sous 24h ouvré' },
               { color: '#22c55e', label: 'SAV & Garantie', time: 'Traitement J+1' },
             ].map((item) => (
-              <div key={item.label} style={{ display: 'flex', alignItems: 'center', gap: 12, fontSize: 13, color: '#94a3b8', marginBottom: 10 }}>
+              <div key={item.label} style={{ display: 'flex', alignItems: 'center', gap: 12, fontSize: 13, color: '#64748b', marginBottom: 10 }}>
                 <span style={{ width: 8, height: 8, borderRadius: '50%', background: item.color, flexShrink: 0 }} />
-                <strong style={{ color: '#fff' }}>{item.label}</strong> — {item.time}
+                <strong style={{ color: '#0f2257' }}>{item.label}</strong> — {item.time}
               </div>
             ))}
           </div>
@@ -218,13 +218,13 @@ export function ContactForm({ isQuote = false }: Props) {
         {/* SIDEBAR */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           {/* WhatsApp card */}
-          <div style={{ background: '#0b1630', borderRadius: 14, padding: 22 }}>
+          <div style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: 16, padding: 22, boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
               <div style={{ width: 44, height: 44, borderRadius: '50%', background: '#22c55e', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                 <WhatsAppIcon size={22} color="#fff" />
               </div>
               <div>
-                <div style={{ fontSize: 14, fontWeight: 700, color: '#fff' }}>Support WhatsApp 24/7</div>
+                <div style={{ fontSize: 14, fontWeight: 700, color: '#0f2257' }}>Support WhatsApp 24/7</div>
                 <div style={{ fontSize: 11, color: '#64748b' }}>Réponse garantie en moins de 2h</div>
               </div>
             </div>
@@ -265,8 +265,8 @@ export function ContactForm({ isQuote = false }: Props) {
 
           {/* Map card */}
           <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 14, overflow: 'hidden' }}>
-            <div style={{ background: '#0b1630', height: 140, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8, position: 'relative' }}>
-              <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 50%, rgba(29,78,216,0.25), transparent 60%)' }} />
+            <div style={{ background: '#f0f4ff', height: 140, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8, position: 'relative' }}>
+              <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 50%, rgba(29,78,216,0.08), transparent 60%)' }} />
               <div style={{ position: 'relative', zIndex: 1 }}><MapPin size={32} style={{ color: '#f97316' }} /></div>
               <div style={{ fontSize: 11, color: '#64748b', textAlign: 'center', position: 'relative', zIndex: 1, lineHeight: 1.5 }}>
                 TSF Technology — Lannkin<br />Hermival-les-Vaux, Normandie

@@ -125,9 +125,9 @@ export function Header() {
       <div
         className="transition-all duration-300"
         style={{
-          background: scrolled ? 'rgba(15,30,60,0.97)' : 'rgba(15,30,60,0.9)',
-          borderBottom: '1px solid rgba(255,255,255,0.08)',
-          boxShadow: scrolled ? '0 2px 12px rgba(0,0,0,.25)' : 'none',
+          background: scrolled ? 'rgba(255,255,255,0.98)' : '#ffffff',
+          borderBottom: scrolled ? '1px solid #e2e8f0' : '1px solid transparent',
+          boxShadow: scrolled ? '0 1px 8px rgba(0,0,0,0.06)' : 'none',
           backdropFilter: 'blur(12px)',
         }}
       >
@@ -140,8 +140,8 @@ export function Header() {
               <text x="19" y="27" textAnchor="middle" fontFamily="'Space Grotesk', sans-serif" fontWeight="800" fontSize="13" fill="white">TSF</text>
             </svg>
             <div>
-              <div className="text-[17px] font-bold" style={{ color: '#ffffff', fontFamily: "'DM Sans', sans-serif", letterSpacing: '0.5px' }}>TSF Technology</div>
-              <div className="text-[9px] font-medium uppercase tracking-[2px]" style={{ color: '#64748b' }}>by Lannkin</div>
+              <div className="text-[17px] font-bold" style={{ color: '#0f2257', letterSpacing: '0.5px' }}>TSF Technology</div>
+              <div className="text-[9px] font-medium uppercase tracking-[2px]" style={{ color: '#94a3b8' }}>by Lannkin</div>
             </div>
           </Link>
 
@@ -150,7 +150,7 @@ export function Header() {
 
             {/* PRODUITS */}
             <div className="nav-item relative flex items-center">
-              <button aria-haspopup="true" className="nav-trigger flex items-center gap-[5px] h-[64px] text-[14px] font-medium border-0 bg-transparent cursor-pointer whitespace-nowrap transition-colors" style={{ padding: '0 16px', color: '#cbd5e1' }}>
+              <button aria-haspopup="true" className="nav-trigger flex items-center gap-[5px] h-[64px] text-[14px] font-medium border-0 bg-transparent cursor-pointer whitespace-nowrap transition-colors" style={{ padding: '0 16px', color: '#1e293b' }}>
                 {t('products')}
                 <ChevronDown size={14} className="nav-chevron opacity-50 transition-transform" />
               </button>
@@ -207,7 +207,7 @@ export function Header() {
 
             {/* SOLUTIONS */}
             <div className="nav-item relative flex items-center">
-              <button aria-haspopup="true" className="nav-trigger flex items-center gap-[5px] h-[64px] text-[14px] font-medium border-0 bg-transparent cursor-pointer whitespace-nowrap transition-colors" style={{ padding: '0 16px', color: '#cbd5e1' }}>
+              <button aria-haspopup="true" className="nav-trigger flex items-center gap-[5px] h-[64px] text-[14px] font-medium border-0 bg-transparent cursor-pointer whitespace-nowrap transition-colors" style={{ padding: '0 16px', color: '#1e293b' }}>
                 {t('solutions')}
                 <ChevronDown size={14} className="nav-chevron opacity-50 transition-transform" />
               </button>
@@ -232,7 +232,7 @@ export function Header() {
 
             {/* RESOURCES */}
             <div className="nav-item relative flex items-center">
-              <button aria-haspopup="true" className="nav-trigger flex items-center gap-[5px] h-[64px] text-[14px] font-medium border-0 bg-transparent cursor-pointer whitespace-nowrap transition-colors" style={{ padding: '0 16px', color: '#cbd5e1' }}>
+              <button aria-haspopup="true" className="nav-trigger flex items-center gap-[5px] h-[64px] text-[14px] font-medium border-0 bg-transparent cursor-pointer whitespace-nowrap transition-colors" style={{ padding: '0 16px', color: '#1e293b' }}>
                 {t('resources')}
                 <ChevronDown size={14} className="nav-chevron opacity-50 transition-transform" />
               </button>
@@ -263,12 +263,12 @@ export function Header() {
 
             {/* Simple links */}
             <div className="nav-item relative flex items-center">
-              <Link href="/a-propos" className="nav-trigger flex items-center h-[64px] text-[14px] font-medium no-underline transition-colors" style={{ padding: '0 16px', color: '#cbd5e1' }}>
+              <Link href="/a-propos" className="nav-trigger flex items-center h-[64px] text-[14px] font-medium no-underline transition-colors" style={{ padding: '0 16px', color: '#1e293b' }}>
                 {t('about')}
               </Link>
             </div>
             <div className="nav-item relative flex items-center">
-              <Link href="/contact" className="nav-trigger flex items-center h-[64px] text-[14px] font-medium no-underline transition-colors" style={{ padding: '0 16px', color: '#cbd5e1' }}>
+              <Link href="/contact" className="nav-trigger flex items-center h-[64px] text-[14px] font-medium no-underline transition-colors" style={{ padding: '0 16px', color: '#1e293b' }}>
                 {t('contact')}
               </Link>
             </div>
@@ -291,7 +291,7 @@ export function Header() {
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="lg:hidden p-2 rounded-lg border-0 bg-transparent cursor-pointer"
-              style={{ color: '#e2e8f0' }}
+              style={{ color: '#0f2257' }}
               aria-label="Menu"
             >
               {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -356,10 +356,10 @@ export function Header() {
         .nav-trigger::after {
           content: '';
           position: absolute; bottom: 0; left: 16px; right: 16px;
-          height: 2px; background: #60a5fa;
+          height: 2px; background: #1d4ed8;
           transform: scaleX(0); transition: transform .25s;
         }
-        .nav-item:hover .nav-trigger { color: #ffffff !important; }
+        .nav-item:hover .nav-trigger { color: #0f2257 !important; }
         .nav-item:hover .nav-trigger::after { transform: scaleX(1); }
         .nav-item:hover .nav-chevron { transform: rotate(180deg); opacity: 1; }
 
@@ -377,6 +377,9 @@ export function Header() {
 
         /* Top bar links */
         .nav-topbar-link:hover { color: #fff !important; }
+
+        /* Header text adapts to white background */
+        .nav-trigger { color: #1e293b; }
       `}} />
     </header>
   );

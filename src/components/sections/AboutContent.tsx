@@ -12,7 +12,7 @@ export function AboutContent() {
         {/* Background image */}
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url(/images/about-hero.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
         {/* Dark overlay for readability */}
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(11,22,48,0.92) 0%, rgba(11,22,48,0.8) 50%, rgba(11,22,48,0.7) 100%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0.75) 100%)' }} />
         {/* Blue glow accents */}
         <div style={{ position: 'absolute', top: -100, right: -100, width: 600, height: 600, background: 'radial-gradient(circle, rgba(29,78,216,0.18), transparent 60%)', pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', bottom: -60, left: -60, width: 400, height: 400, background: 'radial-gradient(circle, rgba(249,115,22,0.08), transparent 60%)', pointerEvents: 'none' }} />
@@ -20,24 +20,24 @@ export function AboutContent() {
           className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-[60px] items-center"
         >
           <div>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 999, padding: '5px 14px', fontSize: 11, color: '#94a3b8', fontWeight: 600, letterSpacing: 0.5, marginBottom: 18 }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: '#f0f4ff', border: '1px solid rgba(29,78,216,0.15)', borderRadius: 999, padding: '5px 14px', fontSize: 11, color: '#1d4ed8', fontWeight: 600, letterSpacing: 0.5, marginBottom: 18 }}>
               Notre histoire
             </div>
-            <h1 style={{ fontSize: 42, fontWeight: 800, color: '#fff', letterSpacing: -0.5, marginBottom: 14, lineHeight: 1.15 }}>
-              Pionnier du réseau<br />industriel <span style={{ color: '#60a5fa' }}>fiable</span>
+            <h1 style={{ fontSize: 42, fontWeight: 800, color: '#0f2257', letterSpacing: -0.5, marginBottom: 14, lineHeight: 1.15 }}>
+              Pionnier du réseau<br />industriel <span style={{ color: '#1d4ed8' }}>fiable</span>
             </h1>
-            <p style={{ fontSize: 15, color: '#94a3b8', lineHeight: 1.75, marginBottom: 28 }}>
+            <p style={{ fontSize: 15, color: '#64748b', lineHeight: 1.75, marginBottom: 28 }}>
               TSF Technology by Lannkin conçoit et distribue des équipements réseau industriels IP40 pour les environnements les plus exigeants. 300 000+ unités déployées dans 40+ pays.
             </p>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               {['SIREN 953 478 971', 'TVA FR45953478971', 'France — Hermival-les-Vaux'].map((b) => (
-                <span key={b} style={{ fontFamily: "'Space Mono', monospace", fontSize: 10, fontWeight: 700, padding: '5px 12px', borderRadius: 6, background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', color: '#94a3b8' }}>{b}</span>
+                <span key={b} style={{ fontFamily: "'Space Mono', monospace", fontSize: 10, fontWeight: 700, padding: '5px 12px', borderRadius: 6, background: '#f0f4ff', border: '1px solid rgba(29,78,216,0.12)', color: '#1d4ed8' }}>{b}</span>
               ))}
             </div>
           </div>
 
           {/* Identity card */}
-          <div style={{ background: 'rgba(11,22,48,0.55)', backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 16, padding: 28 }}>
+          <div style={{ background: '#ffffff', backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)', border: '1px solid #e2e8f0', borderRadius: 16, padding: 28, boxShadow: '0 4px 24px rgba(15,34,87,0.08)' }}>
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', color: '#64748b', marginBottom: 20 }}>Identité de l&apos;entreprise</div>
             {[
               ['Raison sociale', 'Lannkin'],
@@ -48,9 +48,9 @@ export function AboutContent() {
               ['Siège social', '14100 Hermival-les-Vaux'],
               ['Statut', '● Actif'],
             ].map(([key, val]) => (
-              <div key={key} style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 0', borderBottom: '1px solid rgba(255,255,255,0.06)', fontSize: 13 }}>
+              <div key={key} style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 0', borderBottom: '1px solid #e2e8f0', fontSize: 13 }}>
                 <span style={{ color: '#64748b', fontWeight: 500 }}>{key}</span>
-                <span style={{ color: val === '● Actif' ? '#22c55e' : '#fff', fontWeight: 600, fontFamily: "'Space Mono', monospace", fontSize: 12 }}>{val}</span>
+                <span style={{ color: val === '● Actif' ? '#22c55e' : '#0f2257', fontWeight: 600, fontFamily: "'Space Mono', monospace", fontSize: 12 }}>{val}</span>
               </div>
             ))}
           </div>
@@ -60,7 +60,7 @@ export function AboutContent() {
       {/* ── VALUES ── */}
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '60px 40px' }}>
         <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', color: '#1d4ed8', marginBottom: 10 }}>Nos valeurs</div>
-        <h2 style={{ fontSize: 30, fontWeight: 800, color: '#0b1630', marginBottom: 14, letterSpacing: -0.5 }}>Pourquoi TSF Technology ?</h2>
+        <h2 style={{ fontSize: 30, fontWeight: 800, color: '#0f2257', marginBottom: 14, letterSpacing: -0.5 }}>Pourquoi TSF Technology ?</h2>
         <p style={{ fontSize: 15, color: '#64748b', lineHeight: 1.75, maxWidth: 600, marginBottom: 40 }}>
           Des équipements conçus pour durer, dans des environnements où la fiabilité n&apos;est pas une option.
         </p>
@@ -73,7 +73,7 @@ export function AboutContent() {
             <div key={v.num} style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: 24, position: 'relative', overflow: 'hidden' }}>
               <div style={{ position: 'absolute', top: -10, right: 12, fontFamily: "'Space Mono', monospace", fontSize: 60, fontWeight: 700, color: 'rgba(29,78,216,0.05)', lineHeight: 1 }}>{v.num}</div>
               <div style={{ width: 40, height: 40, borderRadius: 10, background: '#eff6ff', border: '1px solid #bfdbfe', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14, color: '#1d4ed8' }}>{v.icon}</div>
-              <div style={{ fontSize: 15, fontWeight: 700, color: '#0b1630', marginBottom: 6 }}>{v.title}</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: '#0f2257', marginBottom: 6 }}>{v.title}</div>
               <div style={{ fontSize: 13, color: '#64748b', lineHeight: 1.65 }}>{v.desc}</div>
             </div>
           ))}
@@ -86,7 +86,7 @@ export function AboutContent() {
       {/* ── TIMELINE + CERTIFICATIONS ── */}
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '60px 40px' }}>
         <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', color: '#1d4ed8', marginBottom: 10 }}>Notre parcours</div>
-        <h2 style={{ fontSize: 30, fontWeight: 800, color: '#0b1630', marginBottom: 14, letterSpacing: -0.5 }}>Chronologie</h2>
+        <h2 style={{ fontSize: 30, fontWeight: 800, color: '#0f2257', marginBottom: 14, letterSpacing: -0.5 }}>Chronologie</h2>
         <p style={{ fontSize: 15, color: '#64748b', lineHeight: 1.75, maxWidth: 600, marginBottom: 40 }}>
           De la création à la distribution internationale.
         </p>
@@ -104,7 +104,7 @@ export function AboutContent() {
             ].map((c) => (
               <div key={c.badge} style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: 24, textAlign: 'center' }}>
                 <div style={{ fontFamily: "'Space Mono', monospace", fontSize: 22, fontWeight: 700, color: '#1d4ed8', marginBottom: 8 }}>{c.badge}</div>
-                <div style={{ fontSize: 12, fontWeight: 700, color: '#0b1630', marginBottom: 4 }}>{c.name}</div>
+                <div style={{ fontSize: 12, fontWeight: 700, color: '#0f2257', marginBottom: 4 }}>{c.name}</div>
                 <div style={{ fontSize: 11, color: '#64748b' }}>{c.desc}</div>
               </div>
             ))}
@@ -118,9 +118,9 @@ export function AboutContent() {
           <div>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: 8, padding: '10px 16px', marginBottom: 20 }}>
               <div style={{ width: 28, height: 28, background: '#1d4ed8', borderRadius: 5, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: 12, color: '#fff' }}>L</div>
-              <span style={{ fontSize: 13, fontWeight: 700, color: '#0b1630' }}>TSF Technology by Lannkin</span>
+              <span style={{ fontSize: 13, fontWeight: 700, color: '#0f2257' }}>TSF Technology by Lannkin</span>
             </div>
-            <h2 style={{ fontSize: 26, fontWeight: 800, color: '#0b1630', marginBottom: 12 }}>La société mère : Lannkin</h2>
+            <h2 style={{ fontSize: 26, fontWeight: 800, color: '#0f2257', marginBottom: 12 }}>La société mère : Lannkin</h2>
             <p style={{ fontSize: 14, color: '#64748b', lineHeight: 1.7, marginBottom: 20 }}>
               Lannkin est la société holding dont TSF Technology est la marque commerciale principale. Basée en Normandie, elle opère la distribution et le support technique pour l&apos;ensemble de la gamme sur le marché européen.
             </p>
@@ -248,7 +248,7 @@ function AnimatedTimeline() {
               )}
             </div>
             <div style={{ fontFamily: "'Space Mono', monospace", fontSize: 11, fontWeight: 700, color: '#1d4ed8', marginBottom: 4, letterSpacing: 0.5 }}>{item.year}</div>
-            <div style={{ fontSize: 15, fontWeight: 700, color: '#0b1630', marginBottom: 4 }}>{item.title}</div>
+            <div style={{ fontSize: 15, fontWeight: 700, color: '#0f2257', marginBottom: 4 }}>{item.title}</div>
             <div style={{ fontSize: 13, color: '#64748b', lineHeight: 1.6 }}>{item.desc}</div>
           </div>
         );

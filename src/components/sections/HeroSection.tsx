@@ -27,7 +27,7 @@ function useCounter(target: number, delay: number, duration = 1200) {
   return value;
 }
 
-/* ── Network Canvas ── */
+/* ── Network Canvas (adapted for light background) ── */
 interface NetworkNode {
   x: number;
   y: number;
@@ -71,7 +71,7 @@ function NetworkCanvas() {
       t: Math.random(),
       speed: 0.004 + Math.random() * 0.003,
       dir: Math.random() > 0.5 ? 1 : -1,
-      color: Math.random() > 0.5 ? '#38bdf8' : '#f97316',
+      color: Math.random() > 0.5 ? '#1d4ed8' : '#f97316',
     }))
   );
 
@@ -98,7 +98,7 @@ function NetworkCanvas() {
       ctx.beginPath();
       ctx.moveTo(pa.x, pa.y);
       ctx.lineTo(pb.x, pb.y);
-      ctx.strokeStyle = 'rgba(56,189,248,0.12)';
+      ctx.strokeStyle = 'rgba(15,34,87,0.1)';
       ctx.lineWidth = 1;
       ctx.stroke();
     });
@@ -116,7 +116,7 @@ function NetworkCanvas() {
 
       // Glow trail
       const grd = ctx.createRadialGradient(px, py, 0, px, py, 8);
-      grd.addColorStop(0, p.color + 'cc');
+      grd.addColorStop(0, p.color + '99');
       grd.addColorStop(1, p.color + '00');
       ctx.beginPath();
       ctx.arc(px, py, 8, 0, Math.PI * 2);
@@ -137,7 +137,7 @@ function NetworkCanvas() {
 
       // Glow
       const grd = ctx.createRadialGradient(x, y, 0, x, y, n.r * 2.5);
-      grd.addColorStop(0, n.isHub ? 'rgba(29,78,216,0.4)' : 'rgba(56,189,248,0.25)');
+      grd.addColorStop(0, n.isHub ? 'rgba(29,78,216,0.2)' : 'rgba(15,34,87,0.1)');
       grd.addColorStop(1, 'transparent');
       ctx.beginPath();
       ctx.arc(x, y, n.r * 2.5, 0, Math.PI * 2);
@@ -147,15 +147,15 @@ function NetworkCanvas() {
       // Circle
       ctx.beginPath();
       ctx.arc(x, y, n.r, 0, Math.PI * 2);
-      ctx.fillStyle = n.isHub ? '#1d4ed8' : 'rgba(30,58,132,0.8)';
+      ctx.fillStyle = n.isHub ? '#1d4ed8' : '#e8eef8';
       ctx.fill();
-      ctx.strokeStyle = n.isHub ? '#60a5fa' : 'rgba(56,189,248,0.5)';
+      ctx.strokeStyle = n.isHub ? '#3b82f6' : 'rgba(15,34,87,0.2)';
       ctx.lineWidth = n.isHub ? 2 : 1;
       ctx.stroke();
 
       // Hub icon
       if (n.isHub) {
-        ctx.strokeStyle = 'rgba(255,255,255,0.7)';
+        ctx.strokeStyle = 'rgba(255,255,255,0.8)';
         ctx.lineWidth = 1.5;
         const s = 8;
         ctx.beginPath(); ctx.arc(x, y - s, 3, 0, Math.PI * 2); ctx.stroke();
@@ -170,8 +170,8 @@ function NetworkCanvas() {
 
       // Label
       if (n.label) {
-        ctx.fillStyle = 'rgba(148,163,184,0.9)';
-        ctx.font = '10px Inter, sans-serif';
+        ctx.fillStyle = '#64748b';
+        ctx.font = '10px Satoshi, sans-serif';
         ctx.textAlign = 'center';
         ctx.fillText(n.label, x, y + n.r + 12);
       }
@@ -185,7 +185,7 @@ function NetworkCanvas() {
     const pulseAlpha = 1 - (frameRef.current % 120) / 120;
     ctx.beginPath();
     ctx.arc(cx, cy, pulseRadius, 0, Math.PI * 2);
-    ctx.strokeStyle = `rgba(96,165,250,${pulseAlpha * 0.5})`;
+    ctx.strokeStyle = `rgba(29,78,216,${pulseAlpha * 0.35})`;
     ctx.lineWidth = 1.5;
     ctx.stroke();
 
@@ -230,10 +230,21 @@ const TICKER_ITEMS: { icon: LucideIcon; text: string }[] = [
   { icon: Zap, text: 'Livraison rapide' },
 ];
 
+/* ── Parallax hook ── */
+function useParallax() {
+  const [offset, setOffset] = useState(0);
+  useEffect(() => {
+    const onScroll = () => setOffset(window.scrollY * 0.3);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  return offset;
+}
+
 /* ── HeroSection ── */
 export function HeroSection() {
   const t = useTranslations('hero');
-
+  const parallaxOffset = useParallax();
 
   const count102 = useCounter(102, 900);
   const countIP40 = useCounter(40, 1050);
@@ -243,55 +254,51 @@ export function HeroSection() {
     <>
       <section
         className="relative min-h-[75vh] lg:min-h-screen flex items-start lg:items-center overflow-hidden pt-[40px] lg:pt-[108px]"
-        style={{ background: '#0b1630' }}
+        style={{ background: 'linear-gradient(180deg, #ffffff 0%, #f0f4ff 100%)' }}
       >
-        {/* Circuit board background pattern */}
-        <div className="absolute inset-0 pointer-events-none" style={{ opacity: 0.12 }}>
+        {/* Circuit board background pattern — subtle on light */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ opacity: 0.04, transform: `translateY(${parallaxOffset}px)` }}
+        >
           <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <pattern id="circuit" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
-                {/* Horizontal traces */}
-                <line x1="0" y1="40" x2="60" y2="40" stroke="#38bdf8" strokeWidth="1.5"/>
-                <line x1="80" y1="40" x2="200" y2="40" stroke="#38bdf8" strokeWidth="1"/>
-                <line x1="0" y1="100" x2="120" y2="100" stroke="#60a5fa" strokeWidth="1"/>
-                <line x1="140" y1="100" x2="200" y2="100" stroke="#38bdf8" strokeWidth="1.5"/>
-                <line x1="0" y1="160" x2="80" y2="160" stroke="#60a5fa" strokeWidth="1"/>
-                <line x1="100" y1="160" x2="200" y2="160" stroke="#38bdf8" strokeWidth="1"/>
-                {/* Vertical traces */}
-                <line x1="60" y1="0" x2="60" y2="40" stroke="#38bdf8" strokeWidth="1"/>
-                <line x1="60" y1="40" x2="60" y2="100" stroke="#60a5fa" strokeWidth="0.8"/>
-                <line x1="140" y1="60" x2="140" y2="140" stroke="#38bdf8" strokeWidth="1"/>
-                <line x1="100" y1="120" x2="100" y2="200" stroke="#60a5fa" strokeWidth="0.8"/>
-                {/* Junction dots */}
-                <circle cx="60" cy="40" r="3" fill="#38bdf8"/>
-                <circle cx="140" cy="100" r="3" fill="#60a5fa"/>
-                <circle cx="100" cy="160" r="3" fill="#38bdf8"/>
-                <circle cx="80" cy="40" r="2" fill="#60a5fa"/>
-                <circle cx="120" cy="100" r="2" fill="#38bdf8"/>
-                {/* IC chip shapes */}
-                <rect x="25" y="70" width="16" height="20" rx="2" fill="none" stroke="#38bdf8" strokeWidth="1"/>
-                <line x1="25" y1="75" x2="18" y2="75" stroke="#38bdf8" strokeWidth="0.8"/>
-                <line x1="25" y1="80" x2="18" y2="80" stroke="#38bdf8" strokeWidth="0.8"/>
-                <line x1="25" y1="85" x2="18" y2="85" stroke="#38bdf8" strokeWidth="0.8"/>
-                <line x1="41" y1="75" x2="48" y2="75" stroke="#38bdf8" strokeWidth="0.8"/>
-                <line x1="41" y1="80" x2="48" y2="80" stroke="#38bdf8" strokeWidth="0.8"/>
-                <line x1="41" y1="85" x2="48" y2="85" stroke="#38bdf8" strokeWidth="0.8"/>
-                {/* Small components */}
-                <rect x="150" y="30" width="12" height="6" rx="1" fill="none" stroke="#60a5fa" strokeWidth="0.8"/>
-                <rect x="165" y="150" width="12" height="6" rx="1" fill="none" stroke="#38bdf8" strokeWidth="0.8"/>
-                {/* Diagonal traces */}
-                <line x1="80" y1="40" x2="100" y2="60" stroke="#60a5fa" strokeWidth="0.8"/>
-                <line x1="140" y1="140" x2="160" y2="160" stroke="#38bdf8" strokeWidth="0.8"/>
+                <line x1="0" y1="40" x2="60" y2="40" stroke="#0f2257" strokeWidth="1.5"/>
+                <line x1="80" y1="40" x2="200" y2="40" stroke="#0f2257" strokeWidth="1"/>
+                <line x1="0" y1="100" x2="120" y2="100" stroke="#1d4ed8" strokeWidth="1"/>
+                <line x1="140" y1="100" x2="200" y2="100" stroke="#0f2257" strokeWidth="1.5"/>
+                <line x1="0" y1="160" x2="80" y2="160" stroke="#1d4ed8" strokeWidth="1"/>
+                <line x1="100" y1="160" x2="200" y2="160" stroke="#0f2257" strokeWidth="1"/>
+                <line x1="60" y1="0" x2="60" y2="40" stroke="#0f2257" strokeWidth="1"/>
+                <line x1="60" y1="40" x2="60" y2="100" stroke="#1d4ed8" strokeWidth="0.8"/>
+                <line x1="140" y1="60" x2="140" y2="140" stroke="#0f2257" strokeWidth="1"/>
+                <line x1="100" y1="120" x2="100" y2="200" stroke="#1d4ed8" strokeWidth="0.8"/>
+                <circle cx="60" cy="40" r="3" fill="#0f2257"/>
+                <circle cx="140" cy="100" r="3" fill="#1d4ed8"/>
+                <circle cx="100" cy="160" r="3" fill="#0f2257"/>
+                <circle cx="80" cy="40" r="2" fill="#1d4ed8"/>
+                <circle cx="120" cy="100" r="2" fill="#0f2257"/>
+                <rect x="25" y="70" width="16" height="20" rx="2" fill="none" stroke="#0f2257" strokeWidth="1"/>
+                <line x1="25" y1="75" x2="18" y2="75" stroke="#0f2257" strokeWidth="0.8"/>
+                <line x1="25" y1="80" x2="18" y2="80" stroke="#0f2257" strokeWidth="0.8"/>
+                <line x1="25" y1="85" x2="18" y2="85" stroke="#0f2257" strokeWidth="0.8"/>
+                <line x1="41" y1="75" x2="48" y2="75" stroke="#0f2257" strokeWidth="0.8"/>
+                <line x1="41" y1="80" x2="48" y2="80" stroke="#0f2257" strokeWidth="0.8"/>
+                <line x1="41" y1="85" x2="48" y2="85" stroke="#0f2257" strokeWidth="0.8"/>
+                <rect x="150" y="30" width="12" height="6" rx="1" fill="none" stroke="#1d4ed8" strokeWidth="0.8"/>
+                <rect x="165" y="150" width="12" height="6" rx="1" fill="none" stroke="#0f2257" strokeWidth="0.8"/>
+                <line x1="80" y1="40" x2="100" y2="60" stroke="#1d4ed8" strokeWidth="0.8"/>
+                <line x1="140" y1="140" x2="160" y2="160" stroke="#0f2257" strokeWidth="0.8"/>
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#circuit)"/>
           </svg>
         </div>
 
-        {/* Background gradient overlays */}
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 80% 60% at 20% 50%, rgba(29,78,216,0.25) 0%, transparent 70%)' }} />
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 50% at 80% 30%, rgba(56,189,248,0.1) 0%, transparent 60%)' }} />
-        <div className="absolute bottom-0 left-0 right-0 h-[200px] pointer-events-none" style={{ background: 'linear-gradient(to top, #0b1630, transparent)' }} />
+        {/* Subtle gradient overlays */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 80% 60% at 20% 50%, rgba(29,78,216,0.06) 0%, transparent 70%)' }} />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 50% at 80% 30%, rgba(15,34,87,0.04) 0%, transparent 60%)' }} />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-10 w-full z-[2]">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-center">
@@ -300,9 +307,9 @@ export function HeroSection() {
               <div
                 className="hero-slide-left inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs mb-7"
                 style={{
-                  background: 'rgba(255,255,255,0.07)',
-                  border: '1px solid rgba(255,255,255,0.12)',
-                  color: '#94a3b8',
+                  background: '#f0f4ff',
+                  border: '1px solid rgba(29,78,216,0.15)',
+                  color: '#1d4ed8',
                   animationDelay: '0.1s',
                 }}
               >
@@ -311,15 +318,15 @@ export function HeroSection() {
               </div>
 
               <h1
-                className="hero-slide-left text-4xl sm:text-5xl lg:text-[58px] font-extrabold text-white leading-[1.1] mb-5"
-                style={{ animationDelay: '0.25s' }}
+                className="hero-slide-left text-4xl sm:text-5xl lg:text-[58px] font-black leading-[1.1] mb-5"
+                style={{ color: '#0f2257', animationDelay: '0.25s', letterSpacing: '-0.5px' }}
               >
                 {t('title')}
               </h1>
 
               <p
                 className="hero-slide-left text-[15px] leading-[1.7] max-w-[420px] mb-9"
-                style={{ color: '#94a3b8', animationDelay: '0.4s' }}
+                style={{ color: '#64748b', animationDelay: '0.4s' }}
               >
                 {t('subtitle')}
               </p>
@@ -330,7 +337,7 @@ export function HeroSection() {
               >
                 <Link
                   href="/produits"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-bold text-white rounded-[5px] transition-all hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-bold text-white rounded-lg transition-all hover:-translate-y-0.5 hover:shadow-lg"
                   style={{ background: '#f97316' }}
                 >
                   {t('cta1')}
@@ -338,8 +345,8 @@ export function HeroSection() {
                 </Link>
                 <Link
                   href="/demande-de-devis"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold text-white rounded-[5px] transition-all hover:-translate-y-0.5"
-                  style={{ border: '1px solid rgba(255,255,255,0.25)' }}
+                  className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-lg transition-all hover:-translate-y-0.5"
+                  style={{ border: '1.5px solid #0f2257', color: '#0f2257' }}
                 >
                   {t('cta2')}
                 </Link>
@@ -352,16 +359,16 @@ export function HeroSection() {
               style={{ animationDelay: '0.3s' }}
             >
               <div
-                className="relative w-full max-w-[520px] rounded-2xl p-8 mt-6 mb-8"
+                className="relative w-full max-w-[520px] rounded-2xl p-8 mt-6 mb-8 card-elevated"
                 style={{
-                  background: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(255,255,255,0.1)',
-                  backdropFilter: 'blur(10px)',
+                  background: '#ffffff',
+                  border: '1px solid #e2e8f0',
+                  boxShadow: '0 4px 24px rgba(15,34,87,0.08)',
                 }}
               >
                 {/* Guarantee badge */}
                 <div
-                  className="hero-badge-pop absolute -top-4 -right-4 px-4 py-2 rounded-md text-xs font-bold text-white"
+                  className="hero-badge-pop absolute -top-4 -right-4 px-4 py-2 rounded-lg text-xs font-bold text-white shadow-md"
                   style={{ background: '#22c55e', animationDelay: '1.2s' }}
                 >
                   &#x2713; Garantie 3 ans
@@ -372,32 +379,32 @@ export function HeroSection() {
 
                 {/* Stats row */}
                 <div
-                  className="grid grid-cols-3 rounded-[10px] overflow-hidden mb-4"
-                  style={{ gap: 1, background: 'rgba(255,255,255,0.08)' }}
+                  className="grid grid-cols-3 rounded-xl overflow-hidden mb-4"
+                  style={{ gap: 1, background: '#e2e8f0' }}
                 >
                   <div
-                    className="hero-fade-up text-center p-4"
-                    style={{ background: 'rgba(255,255,255,0.04)', animationDelay: '0.9s' }}
+                    className="hero-fade-up text-center p-4 bg-white"
+                    style={{ animationDelay: '0.9s' }}
                   >
-                    <div className="text-lg mb-1.5" style={{ color: '#94a3b8' }}>&#x2B21;</div>
-                    <div className="text-[22px] font-extrabold text-white font-mono">{count102}</div>
-                    <div className="text-[11px] mt-0.5" style={{ color: '#94a3b8' }}>Produits</div>
+                    <div className="text-lg mb-1.5" style={{ color: '#1d4ed8' }}>&#x2B21;</div>
+                    <div className="text-[22px] font-black font-mono" style={{ color: '#0f2257' }}>{count102}</div>
+                    <div className="text-[11px] mt-0.5" style={{ color: '#64748b' }}>Produits</div>
                   </div>
                   <div
-                    className="hero-fade-up text-center p-4"
-                    style={{ background: 'rgba(255,255,255,0.04)', animationDelay: '1.05s' }}
+                    className="hero-fade-up text-center p-4 bg-white"
+                    style={{ animationDelay: '1.05s' }}
                   >
-                    <div className="text-lg mb-1.5" style={{ color: '#94a3b8' }}>&#x1F6E1;</div>
-                    <div className="text-[22px] font-extrabold text-white font-mono">IP{countIP40}</div>
-                    <div className="text-[11px] mt-0.5" style={{ color: '#94a3b8' }}>Protection</div>
+                    <div className="text-lg mb-1.5" style={{ color: '#1d4ed8' }}>&#x1F6E1;</div>
+                    <div className="text-[22px] font-black font-mono" style={{ color: '#0f2257' }}>IP{countIP40}</div>
+                    <div className="text-[11px] mt-0.5" style={{ color: '#64748b' }}>Protection</div>
                   </div>
                   <div
-                    className="hero-fade-up text-center p-4"
-                    style={{ background: 'rgba(255,255,255,0.04)', animationDelay: '1.2s' }}
+                    className="hero-fade-up text-center p-4 bg-white"
+                    style={{ animationDelay: '1.2s' }}
                   >
-                    <div className="text-lg mb-1.5" style={{ color: '#94a3b8' }}>&#x1F321;</div>
-                    <div className="text-[22px] font-extrabold text-white font-mono">-{countTemp}&deg;C</div>
-                    <div className="text-[11px] mt-0.5" style={{ color: '#94a3b8' }}>&agrave; +75&deg;C</div>
+                    <div className="text-lg mb-1.5" style={{ color: '#1d4ed8' }}>&#x1F321;</div>
+                    <div className="text-[22px] font-black font-mono" style={{ color: '#0f2257' }}>-{countTemp}&deg;C</div>
+                    <div className="text-[11px] mt-0.5" style={{ color: '#64748b' }}>&agrave; +75&deg;C</div>
                   </div>
                 </div>
 
@@ -406,11 +413,11 @@ export function HeroSection() {
                   {['CE', 'FCC', 'UL'].map((cert, i) => (
                     <div
                       key={cert}
-                      className="hero-fade-up text-center py-2 rounded-md text-xs font-bold font-mono"
+                      className="hero-fade-up text-center py-2 rounded-lg text-xs font-bold font-mono"
                       style={{
-                        background: 'rgba(255,255,255,0.06)',
-                        border: '1px solid rgba(255,255,255,0.1)',
-                        color: '#38bdf8',
+                        background: '#f0f4ff',
+                        border: '1px solid rgba(29,78,216,0.15)',
+                        color: '#1d4ed8',
                         animationDelay: `${1.3 + i * 0.1}s`,
                       }}
                     >
@@ -421,7 +428,7 @@ export function HeroSection() {
 
                 {/* Support badge */}
                 <div
-                  className="hero-badge-pop absolute -bottom-4 left-8 flex items-center gap-1.5 px-4 py-2 rounded-md text-xs font-bold text-white"
+                  className="hero-badge-pop absolute -bottom-4 left-8 flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-bold text-white shadow-md"
                   style={{ background: '#f97316', animationDelay: '1.6s' }}
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-white hero-pulse" />
@@ -432,18 +439,18 @@ export function HeroSection() {
           </div>
 
           {/* Mobile stats */}
-          <div className="grid grid-cols-3 gap-4 mt-10 pt-6 lg:hidden" style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+          <div className="grid grid-cols-3 gap-4 mt-10 pt-6 lg:hidden" style={{ borderTop: '1px solid #e2e8f0' }}>
             <div className="text-center">
-              <div className="text-2xl font-extrabold text-white font-mono">{count102}</div>
-              <div className="text-xs mt-1" style={{ color: '#94a3b8' }}>Produits</div>
+              <div className="text-2xl font-black font-mono" style={{ color: '#0f2257' }}>{count102}</div>
+              <div className="text-xs mt-1" style={{ color: '#64748b' }}>Produits</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-extrabold text-white font-mono">IP{countIP40}</div>
-              <div className="text-xs mt-1" style={{ color: '#94a3b8' }}>Protection</div>
+              <div className="text-2xl font-black font-mono" style={{ color: '#0f2257' }}>IP{countIP40}</div>
+              <div className="text-xs mt-1" style={{ color: '#64748b' }}>Protection</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-extrabold text-white font-mono">-{countTemp}&deg;C</div>
-              <div className="text-xs mt-1" style={{ color: '#94a3b8' }}>&agrave; +75&deg;C</div>
+              <div className="text-2xl font-black font-mono" style={{ color: '#0f2257' }}>-{countTemp}&deg;C</div>
+              <div className="text-xs mt-1" style={{ color: '#64748b' }}>&agrave; +75&deg;C</div>
             </div>
           </div>
         </div>
@@ -459,8 +466,9 @@ export function HeroSection() {
       `}} />
       <div
         style={{
-          background: '#1d4ed8',
-          marginTop: '8px',
+          background: '#f0f4ff',
+          borderTop: '1px solid rgba(29,78,216,0.08)',
+          borderBottom: '1px solid rgba(29,78,216,0.08)',
           padding: '12px 0',
           overflow: 'hidden',
           whiteSpace: 'nowrap' as const,
@@ -482,10 +490,10 @@ export function HeroSection() {
                 marginRight: '64px',
                 fontSize: '13px',
                 fontWeight: 500,
-                color: 'rgba(255,255,255,0.9)',
+                color: '#0f2257',
               }}
             >
-              <item.icon size={14} style={{ opacity: 0.7 }} />
+              <item.icon size={14} style={{ color: '#1d4ed8', opacity: 0.7 }} />
               <span>{item.text}</span>
             </span>
           ))}

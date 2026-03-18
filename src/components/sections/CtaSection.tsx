@@ -37,7 +37,7 @@ export function CtaSection() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden" style={{ background: '#0b1630', padding: '80px 48px' }}>
+    <section className="relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0f2257 0%, #0b1630 100%)', padding: '80px 48px' }}>
       {/* Animated grid */}
       <div
         className="absolute inset-0 pointer-events-none"

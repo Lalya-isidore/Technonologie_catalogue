@@ -127,7 +127,7 @@ function WhyCard({ adv, index }: { adv: Advantage; index: number }) {
 
   return (
     <div
-      className="why-card group relative bg-white flex flex-col overflow-hidden cursor-default transition-colors duration-[250ms] hover:!bg-[#fafcff]"
+      className="why-card group relative bg-white flex flex-col overflow-hidden cursor-default card-elevated"
       style={{
         padding: '36px 32px',
         animationDelay: `${0.05 + index * 0.08}s`,
@@ -230,7 +230,7 @@ export function AdvantagesSection() {
   }, []);
 
   return (
-    <section style={{ background: '#f4f7fb' }} className="py-20 lg:py-24">
+    <section style={{ background: '#ffffff' }} className="py-20 lg:py-24">
       <div className="max-w-[1280px] mx-auto px-6 sm:px-12">
         {/* Header */}
         <div className="text-center" style={{ marginBottom: '64px' }}>
@@ -260,12 +260,9 @@ export function AdvantagesSection() {
         {/* Grid */}
         <div
           ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 overflow-hidden rounded-2xl"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
           style={{
-            gap: '1px',
-            background: '#e2e8f0',
-            border: '1px solid #e2e8f0',
-            boxShadow: '0 4px 24px rgba(15,23,42,0.07)',
+            gap: '20px',
           }}
         >
           {ADVANTAGES.map((adv, i) => (

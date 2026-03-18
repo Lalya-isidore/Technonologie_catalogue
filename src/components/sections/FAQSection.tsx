@@ -48,10 +48,11 @@ function FaqItem({
 
   return (
     <div
-      className="bg-white rounded-xl overflow-hidden transition-all duration-300"
+      className="bg-white overflow-hidden transition-all duration-300"
       style={{
-        border: `1px solid ${isOpen ? '#789cd8' : '#e2e8f0'}`,
-        boxShadow: isOpen ? '0 4px 24px rgba(15,82,186,0.08)' : '0 1px 3px rgba(0,0,0,0.04)',
+        borderRadius: '16px',
+        border: `1px solid ${isOpen ? '#1d4ed8' : '#e2e8f0'}`,
+        boxShadow: isOpen ? '0 8px 24px rgba(15,34,87,0.1)' : '0 2px 8px rgba(0,0,0,0.06)',
         animation: 'faqItemIn 0.4s ease both',
         animationDelay: `${index * 0.06}s`,
       }}

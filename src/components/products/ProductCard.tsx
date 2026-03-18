@@ -1,5 +1,6 @@
 'use client';
 
+import { useCallback, useRef } from 'react';
 import { Link } from '@/i18n/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import type { Product } from '@/lib/types';
@@ -15,16 +16,32 @@ type Props = {
 export function ProductCard({ product, index = 0 }: Props) {
   const locale = useLocale() as Locale;
   const t = useTranslations('common');
+  const cardRef = useRef<HTMLAnchorElement>(null);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    const card = cardRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    card.style.transform = `perspective(1000px) rotateY(${x * 4}deg) rotateX(${-y * 4}deg) translateY(-6px)`;
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    const card = cardRef.current;
+    if (card) card.style.transform = '';
+  }, []);
 
   return (
     <Link
+      ref={cardRef}
       href={`/produits/${product.slug[locale]}`}
-      className="prod-card group relative bg-white rounded-2xl flex flex-col no-underline overflow-hidden transition-all duration-300 hover:-translate-y-1"
+      className="prod-card group relative bg-white flex flex-col no-underline overflow-hidden card-elevated"
       style={{
-        border: '1.5px solid #e2e8f0',
-        boxShadow: '0 1px 3px rgba(15,34,87,0.06)',
         animationDelay: `${0.08 + index * 0.07}s`,
       }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
     >
       {/* Top blue gradient line on hover */}
       <span

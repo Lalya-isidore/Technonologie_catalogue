@@ -46,7 +46,7 @@
   --color-danger-500: #ef4444;
 
   /* Fonts */
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-satoshi);
   --font-arabic: var(--font-noto-arabic);
   --font-mono: var(--font-space-mono);
 }
@@ -133,4 +133,50 @@ html {
 }
 .hero-ticker {
   animation: heroTicker 20s linear infinite;
+}
+
+/* ── Scroll Reveal Animation ── */
+@keyframes scrollReveal {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Elevated Card System ── */
+.card-elevated {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-elevated:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(15, 34, 87, 0.12);
+  border-color: #0f2257;
+}
+
+/* ── 3D Tilt Effect ── */
+.tilt-3d {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* ── Page Enter Animation ── */
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+#main-content > main {
+  animation: pageEnter 0.35s ease-out;
 }
