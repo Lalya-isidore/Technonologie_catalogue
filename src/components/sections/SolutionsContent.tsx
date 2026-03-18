@@ -51,16 +51,16 @@ export function SolutionsContent() {
   return (
     <>
       {/* ── HERO ── */}
-      <div style={{ background: 'linear-gradient(180deg, #ffffff 0%, #f0f4ff 100%)', padding: '56px 40px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 50% 100%, rgba(29,78,216,0.06), transparent 60%)' }} />
+      <div style={{ background: '#0b1630', padding: '56px 40px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 50% 100%, rgba(29,78,216,0.2), transparent 60%)' }} />
         <div style={{ maxWidth: 700, margin: '0 auto', position: 'relative', zIndex: 1 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: '#f0f4ff', border: '1px solid rgba(29,78,216,0.15)', borderRadius: 999, padding: '5px 14px', fontSize: 11, color: '#1d4ed8', fontWeight: 600, letterSpacing: 0.5, marginBottom: 18 }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 999, padding: '5px 14px', fontSize: 11, color: '#94a3b8', fontWeight: 600, letterSpacing: 0.5, marginBottom: 18 }}>
             Solutions métier
           </div>
-          <h1 style={{ fontSize: 40, fontWeight: 800, color: '#0f2257', letterSpacing: -0.5, marginBottom: 14, lineHeight: 1.15 }}>
+          <h1 style={{ fontSize: 40, fontWeight: 800, color: '#fff', letterSpacing: -0.5, marginBottom: 14, lineHeight: 1.15 }}>
             Réseau industriel adapté<br />à votre secteur
           </h1>
-          <p style={{ fontSize: 15, color: '#64748b', lineHeight: 1.7 }}>
+          <p style={{ fontSize: 15, color: '#94a3b8', lineHeight: 1.7 }}>
             Nos équipements IP40 sont déployés dans 6 secteurs critiques à travers le monde. Découvrez les configurations recommandées pour votre environnement.
           </p>
         </div>
@@ -69,7 +69,7 @@ export function SolutionsContent() {
       {/* ── INDUSTRIES ── */}
       <div style={{ maxWidth: 1200, margin: '40px auto', padding: '0 40px' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 32 }}>
-          <h2 style={{ fontSize: 24, fontWeight: 800, color: '#0f2257' }}>6 secteurs, 1 standard de fiabilité</h2>
+          <h2 style={{ fontSize: 24, fontWeight: 800, color: '#0b1630' }}>6 secteurs, 1 standard de fiabilité</h2>
           <p style={{ fontSize: 14, color: '#64748b', maxWidth: 400, lineHeight: 1.6, textAlign: 'right' }}>
             Chaque secteur a ses contraintes. Nos équipements IP40 s&apos;adaptent à tous.
           </p>
@@ -85,7 +85,7 @@ export function SolutionsContent() {
             </div>
             <div style={{ background: '#fff', padding: 28 }}>
               <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', color: '#1d4ed8', marginBottom: 8 }}>{ind.cat}</div>
-              <div style={{ fontSize: 22, fontWeight: 800, color: '#0f2257', marginBottom: 8, letterSpacing: -0.3 }}>{ind.name}</div>
+              <div style={{ fontSize: 22, fontWeight: 800, color: '#0b1630', marginBottom: 8, letterSpacing: -0.3 }}>{ind.name}</div>
               <div style={{ fontSize: 13, color: '#64748b', lineHeight: 1.6, marginBottom: 16 }}>{ind.desc}</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 5, marginBottom: 16 }}>
                 {ind.useCases.map((uc) => (
@@ -118,7 +118,7 @@ export function SolutionsContent() {
               </div>
               <div style={{ background: '#fff', padding: 24 }}>
                 <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', color: '#1d4ed8', marginBottom: 8 }}>{ind.cat}</div>
-                <div style={{ fontSize: 18, fontWeight: 800, color: '#0f2257', marginBottom: 8, letterSpacing: -0.3 }}>{ind.name}</div>
+                <div style={{ fontSize: 18, fontWeight: 800, color: '#0b1630', marginBottom: 8, letterSpacing: -0.3 }}>{ind.name}</div>
                 <div style={{ fontSize: 13, color: '#64748b', lineHeight: 1.6, marginBottom: 16 }}>{ind.desc}</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 5, marginBottom: 16 }}>
                   {ind.useCases.map((uc) => (
@@ -143,7 +143,7 @@ export function SolutionsContent() {
       </div>
 
       {/* ── STATS BAND ── */}
-      <div style={{ background: 'linear-gradient(135deg, #0f2257 0%, #0b1630 100%)', padding: '40px', margin: '40px 0' }}>
+      <div style={{ background: '#0b1630', padding: '40px', margin: '40px 0' }}>
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-6" style={{ maxWidth: 1200, margin: '0 auto' }}>
           {[
             { num: '300k+', label: 'Unités déployées/an' },
@@ -167,7 +167,7 @@ export function SolutionsContent() {
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#eff6ff', border: '1px solid #bfdbfe', color: '#1d4ed8', fontSize: 11, fontWeight: 700, padding: '4px 12px', borderRadius: 999, marginBottom: 16, letterSpacing: 0.5 }}>
             Votre secteur, notre expertise
           </div>
-          <h2 style={{ fontSize: 28, fontWeight: 800, color: '#0f2257', marginBottom: 12 }}>
+          <h2 style={{ fontSize: 28, fontWeight: 800, color: '#0b1630', marginBottom: 12 }}>
             Vous ne trouvez pas votre secteur ?
           </h2>
           <p style={{ fontSize: 14, color: '#64748b', maxWidth: 500, margin: '0 auto 28px', lineHeight: 1.7 }}>

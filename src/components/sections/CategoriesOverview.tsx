@@ -36,7 +36,7 @@ export function CategoriesOverview() {
   }, [activeFilter]);
 
   return (
-    <section style={{ background: '#ffffff' }} className="pt-8 pb-16 lg:pt-10 lg:pb-20">
+    <section style={{ background: '#f4f7fc' }} className="pt-8 pb-16 lg:pt-10 lg:pb-20">
       <div className="max-w-[1280px] mx-auto px-6 sm:px-12">
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6" style={{ marginBottom: '36px' }}>
@@ -91,8 +91,10 @@ export function CategoriesOverview() {
             <Link
               key={key}
               href={href}
-              className="cat-card group relative flex items-center gap-5 bg-white p-[26px_28px] no-underline overflow-hidden card-elevated"
+              className="cat-card group relative flex items-center gap-5 bg-white rounded-[14px] p-[26px_28px] no-underline overflow-hidden transition-all duration-[250ms]"
               style={{
+                border: '1.5px solid #e2e8f0',
+                boxShadow: '0 1px 3px rgba(15,34,87,0.07), 0 1px 2px rgba(15,34,87,0.04)',
                 animationDelay: `${0.05 + i * 0.05}s`,
               }}
             >
@@ -124,8 +126,10 @@ export function CategoriesOverview() {
 
         {/* Bottom bar */}
         <div
-          className="cat-card mt-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 bg-white p-7 sm:p-[28px_36px] card-elevated"
+          className="cat-card mt-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 bg-white rounded-[14px] p-7 sm:p-[28px_36px]"
           style={{
+            border: '1.5px solid #e2e8f0',
+            boxShadow: '0 1px 3px rgba(15,34,87,0.07), 0 1px 2px rgba(15,34,87,0.04)',
             animationDelay: '0.6s',
           }}
         >

@@ -152,7 +152,7 @@ export function ProductDetail({ product }: Props) {
             <p style={{ fontFamily: "'Space Mono', monospace", fontSize: 11, color: '#64748b', marginBottom: 6 }}>
               SKU: {product.sku}
             </p>
-            <h1 style={{ fontSize: 28, fontWeight: 800, color: '#0f2257', lineHeight: 1.2, marginBottom: 12, letterSpacing: -0.5 }}>
+            <h1 style={{ fontSize: 28, fontWeight: 800, color: '#0b1630', lineHeight: 1.2, marginBottom: 12, letterSpacing: -0.5 }}>
               {product.name[locale]}
             </h1>
             <p style={{ fontSize: 14, color: '#64748b', lineHeight: 1.7, marginBottom: 24 }}>
@@ -181,7 +181,7 @@ export function ProductDetail({ product }: Props) {
               </div>
               <div style={{ textAlign: 'right' }}>
                 <div style={{ fontSize: 10, color: '#64748b', letterSpacing: 1, textTransform: 'uppercase' }}>Prix sur devis</div>
-                <div style={{ fontFamily: "'Space Mono', monospace", fontSize: 22, fontWeight: 700, color: '#0f2257' }}>Sur demande</div>
+                <div style={{ fontFamily: "'Space Mono', monospace", fontSize: 22, fontWeight: 700, color: '#0b1630' }}>Sur demande</div>
               </div>
             </div>
 
@@ -202,7 +202,7 @@ export function ProductDetail({ product }: Props) {
               <Link
                 href="/produits"
                 style={{
-                  flex: 1, background: '#fff', color: '#0f2257',
+                  flex: 1, background: '#fff', color: '#0b1630',
                   border: '1.5px solid #e2e8f0', padding: '14px 20px', borderRadius: 7,
                   fontSize: 14, fontWeight: 600, display: 'flex', alignItems: 'center',
                   justifyContent: 'center', gap: 8, textDecoration: 'none', transition: 'all .2s',
@@ -282,7 +282,7 @@ export function ProductDetail({ product }: Props) {
         {/* TAB: COMPARE */}
         {activeTab === 'compare' && (
           <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: 28 }}>
-            <h3 style={{ fontSize: 15, fontWeight: 700, color: '#0f2257', marginBottom: 20 }}>
+            <h3 style={{ fontSize: 15, fontWeight: 700, color: '#0b1630', marginBottom: 20 }}>
               TSF Technology vs Concurrence — Caractéristiques clés
             </h3>
             <CompareRow

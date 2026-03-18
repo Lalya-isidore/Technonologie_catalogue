@@ -1,17 +1,11 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
-import localFont from 'next/font/local';
-import { Noto_Sans_Arabic, Space_Mono } from 'next/font/google';
+import { Inter, Noto_Sans_Arabic, Space_Mono } from 'next/font/google';
 import './globals.css';
 
-const satoshi = localFont({
-  src: [
-    { path: '../fonts/Satoshi-Regular.woff2', weight: '400', style: 'normal' },
-    { path: '../fonts/Satoshi-Medium.woff2', weight: '500', style: 'normal' },
-    { path: '../fonts/Satoshi-Bold.woff2', weight: '700', style: 'normal' },
-    { path: '../fonts/Satoshi-Black.woff2', weight: '900', style: 'normal' },
-  ],
-  variable: '--font-satoshi',
+const inter = Inter({
+  subsets: ['latin', 'latin-ext'],
+  variable: '--font-inter',
   display: 'swap',
 });
 
@@ -70,7 +64,7 @@ export default function RootLayout({ children }: Props) {
   return (
     <html lang="fr" suppressHydrationWarning>
       <body
-        className={`${satoshi.variable} ${notoArabic.variable} ${spaceMono.variable} antialiased bg-white text-dark`}
+        className={`${inter.variable} ${notoArabic.variable} ${spaceMono.variable} antialiased bg-white text-dark`}
       >
         {children}
       </body>

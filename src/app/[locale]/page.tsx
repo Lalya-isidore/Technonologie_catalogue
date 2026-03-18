@@ -4,7 +4,6 @@ import { setRequestLocale } from 'next-intl/server';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { CategoriesOverview } from '@/components/sections/CategoriesOverview';
 import { SectionSkeleton } from '@/components/ui/SectionSkeleton';
-import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { generateOrganizationJsonLd, generateWebSiteJsonLd, generateLocalBusinessJsonLd, generateFaqJsonLd, generateMetadata as generateSeoMetadata } from '@/lib/seo';
 import { getFaqsByPage } from '@/data/faq';
 import { FAQSection } from '@/components/sections/FAQSection';
@@ -56,21 +55,11 @@ export default async function HomePage({ params }: Props) {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(generateFaqJsonLd(homeFaqs, loc)) }} />
       )}
       <HeroSection />
-      <ScrollReveal>
-        <CategoriesOverview />
-      </ScrollReveal>
-      <ScrollReveal delay={100}>
-        <FeaturedProducts />
-      </ScrollReveal>
-      <ScrollReveal delay={100}>
-        <AdvantagesSection />
-      </ScrollReveal>
-      <ScrollReveal delay={100}>
-        <FAQSection faqs={homeFaqs} locale={loc} title="Questions fréquentes" showSidebar />
-      </ScrollReveal>
-      <ScrollReveal>
-        <CtaSection />
-      </ScrollReveal>
+      <CategoriesOverview />
+      <FeaturedProducts />
+      <AdvantagesSection />
+      <FAQSection faqs={homeFaqs} locale={loc} title="Questions fréquentes" showSidebar />
+      <CtaSection />
     </main>
   );
 }
