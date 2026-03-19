@@ -1,8 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useTranslations } from 'next-intl';
-import { Mail, Phone, MapPin, Send, CheckCircle, Clock, FileText, Wrench, MessageSquare, Plug, Radio, Wifi, Zap, Link2, RefreshCw } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle, Clock, FileText, Wrench, MessageSquare, Plug, Radio, Wifi, Zap, Link2, RefreshCw, Loader2 } from 'lucide-react';
+
+const BREVO_API_KEY = process.env.NEXT_PUBLIC_BREVO_API_KEY || '';
+const BREVO_TO_EMAIL = process.env.NEXT_PUBLIC_BREVO_TO_EMAIL || 'login@lannkin.com';
+const BREVO_TO_NAME = process.env.NEXT_PUBLIC_BREVO_TO_NAME || 'TSF Technology';
+const BREVO_SENDER_EMAIL = process.env.NEXT_PUBLIC_BREVO_SENDER_EMAIL || 'info@tsf-technology.com';
 
 function WhatsAppIcon({ size = 16, color = 'currentColor' }: { size?: number; color?: string }) {
   return (
@@ -27,14 +32,73 @@ const QUANTITY_OPTIONS = ['1–5', '6–20', '21–100', '100–500', '500+'];
 
 export function ContactForm({ isQuote = false }: Props) {
   const t = useTranslations('contact');
+  const formRef = useRef<HTMLFormElement>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState('');
   const [activeTab, setActiveTab] = useState<'devis' | 'support' | 'general'>(isQuote ? 'devis' : 'devis');
   const [selectedProduct, setSelectedProduct] = useState('switch');
   const [selectedQty, setSelectedQty] = useState('1–5');
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setSubmitted(true);
+    if (!formRef.current) return;
+
+    setSending(true);
+    setError('');
+
+    const formData = new FormData(formRef.current);
+    const firstName = formData.get('firstName') as string;
+    const lastName = formData.get('lastName') as string;
+    const email = formData.get('email') as string;
+    const phone = formData.get('phone') as string;
+    const company = formData.get('company') as string;
+    const sector = formData.get('sector') as string;
+    const message = formData.get('message') as string;
+
+    const subject = `[TSF Technology] ${activeTab === 'devis' ? 'Demande de devis' : activeTab === 'support' ? 'Support technique' : 'Question générale'} — ${firstName} ${lastName}`;
+
+    const htmlContent = `
+      <h2>Nouvelle demande — ${activeTab}</h2>
+      <table style="border-collapse:collapse;width:100%">
+        <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Nom</td><td style="padding:8px;border:1px solid #ddd">${firstName} ${lastName}</td></tr>
+        <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Email</td><td style="padding:8px;border:1px solid #ddd">${email}</td></tr>
+        <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Téléphone</td><td style="padding:8px;border:1px solid #ddd">${phone || '—'}</td></tr>
+        <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Entreprise</td><td style="padding:8px;border:1px solid #ddd">${company || '—'}</td></tr>
+        <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Secteur</td><td style="padding:8px;border:1px solid #ddd">${sector}</td></tr>
+        ${activeTab === 'devis' ? `
+        <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Produit</td><td style="padding:8px;border:1px solid #ddd">${PRODUCT_TYPES.find(p => p.key === selectedProduct)?.label || selectedProduct}</td></tr>
+        <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Quantité</td><td style="padding:8px;border:1px solid #ddd">${selectedQty}</td></tr>
+        ` : ''}
+      </table>
+      <h3>Message :</h3>
+      <p style="white-space:pre-wrap">${message}</p>
+    `;
+
+    try {
+      const res = await fetch('https://api.brevo.com/v3/smtp/email', {
+        method: 'POST',
+        headers: {
+          'accept': 'application/json',
+          'api-key': BREVO_API_KEY,
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          sender: { name: `${firstName} ${lastName}`, email: BREVO_SENDER_EMAIL },
+          to: [{ email: BREVO_TO_EMAIL, name: BREVO_TO_NAME }],
+          replyTo: { email, name: `${firstName} ${lastName}` },
+          subject,
+          htmlContent,
+        }),
+      });
+
+      if (!res.ok) throw new Error('Erreur envoi');
+      setSubmitted(true);
+    } catch {
+      setError('Une erreur est survenue. Veuillez réessayer ou nous contacter par WhatsApp.');
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
@@ -127,7 +191,11 @@ export function ContactForm({ isQuote = false }: Props) {
               <p style={{ fontSize: 14, color: '#64748b' }}>{t('successMessage')}</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} style={{ padding: 28 }}>
+            <form ref={formRef} onSubmit={handleSubmit} style={{ padding: 28 }}>
+              {/* Hidden fields for EmailJS template */}
+              <input type="hidden" name="request_type" value={activeTab} />
+              <input type="hidden" name="product_type" value={selectedProduct} />
+              <input type="hidden" name="quantity" value={selectedQty} />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4" style={{ marginBottom: 16 }}>
                 <FormField label="Prénom" name="firstName" required placeholder="Jean" />
                 <FormField label="Nom" name="lastName" required placeholder="Dupont" />
@@ -205,8 +273,14 @@ export function ContactForm({ isQuote = false }: Props) {
                 />
               </div>
 
-              <button type="submit" style={{ background: '#f97316', color: '#fff', border: 'none', width: '100%', padding: 14, borderRadius: 8, fontSize: 15, fontWeight: 700, cursor: 'pointer', marginTop: 8 }}>
-                Envoyer ma demande →
+              {error && (
+                <div style={{ background: '#fef2f2', border: '1px solid #fecaca', borderRadius: 8, padding: '12px 16px', fontSize: 13, color: '#dc2626', marginBottom: 12 }}>
+                  {error}
+                </div>
+              )}
+
+              <button type="submit" disabled={sending} style={{ background: sending ? '#94a3b8' : '#f97316', color: '#fff', border: 'none', width: '100%', padding: 14, borderRadius: 8, fontSize: 15, fontWeight: 700, cursor: sending ? 'not-allowed' : 'pointer', marginTop: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+                {sending ? <><Loader2 size={18} className="animate-spin" /> Envoi en cours...</> : 'Envoyer ma demande →'}
               </button>
               <p style={{ fontSize: 11, color: '#64748b', textAlign: 'center', marginTop: 10, lineHeight: 1.5 }}>
                 Vos données sont confidentielles et ne seront jamais revendues.<br />Devis gratuit · Sans engagement · Réponse garantie sous 24h.

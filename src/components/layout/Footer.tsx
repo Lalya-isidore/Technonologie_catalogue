@@ -98,13 +98,13 @@ export function Footer() {
             </svg>
             <div>
               <div className="text-[17px] font-extrabold text-white">{tFooter('brandName')}</div>
-              <div className="text-[10px] uppercase tracking-[2px]" style={{ color: '#475569' }}>
+              <div className="text-[10px] uppercase tracking-[2px]" style={{ color: '#94a3b8' }}>
                 by {tFooter('companyName')}
               </div>
             </div>
           </div>
 
-          <p className="text-[13px] leading-[1.7] mb-6" style={{ color: '#475569' }}>
+          <p className="text-[13px] leading-[1.7] mb-6" style={{ color: '#94a3b8' }}>
             Expert en Communication Internet Industrielle Fiable. Switches Ethernet, Routeurs 4G/5G et solutions IoT pour les environnements industriels les plus exigeants.
           </p>
 
@@ -115,7 +115,7 @@ export function Footer() {
               className="ftr-link flex items-start gap-2.5 text-[13px] no-underline transition-colors"
               style={{ color: '#cbd5e1' }}
             >
-              <Mail size={14} className="mt-px shrink-0" style={{ color: '#475569' }} />
+              <Mail size={14} className="mt-px shrink-0" style={{ color: '#94a3b8' }} />
               {tFooter('email')}
             </a>
             <a
@@ -123,11 +123,11 @@ export function Footer() {
               className="ftr-link flex items-start gap-2.5 text-[13px] no-underline transition-colors"
               style={{ color: '#cbd5e1' }}
             >
-              <Phone size={14} className="mt-px shrink-0" style={{ color: '#475569' }} />
+              <Phone size={14} className="mt-px shrink-0" style={{ color: '#94a3b8' }} />
               {tFooter('whatsapp')}
             </a>
             <div className="flex items-start gap-2.5 text-[13px]" style={{ color: '#cbd5e1' }}>
-              <MapPin size={14} className="mt-px shrink-0" style={{ color: '#475569' }} />
+              <MapPin size={14} className="mt-px shrink-0" style={{ color: '#94a3b8' }} />
               <span>{tFooter('address')}</span>
             </div>
           </div>
@@ -141,13 +141,13 @@ export function Footer() {
               padding: '12px 14px',
             }}
           >
-            <span className="font-mono text-[10px] tracking-[0.3px]" style={{ color: '#475569' }}>
+            <span className="font-mono text-[10px] tracking-[0.3px]" style={{ color: '#94a3b8' }}>
               SIREN <span style={{ color: '#cbd5e1' }}>953 478 971</span>
             </span>
-            <span className="font-mono text-[10px] tracking-[0.3px]" style={{ color: '#475569' }}>
+            <span className="font-mono text-[10px] tracking-[0.3px]" style={{ color: '#94a3b8' }}>
               SIRET <span style={{ color: '#cbd5e1' }}>953 478 971 00013</span>
             </span>
-            <span className="font-mono text-[10px] tracking-[0.3px]" style={{ color: '#475569' }}>
+            <span className="font-mono text-[10px] tracking-[0.3px]" style={{ color: '#94a3b8' }}>
               TVA <span style={{ color: '#cbd5e1' }}>FR45953478971</span>
             </span>
           </div>
@@ -162,7 +162,7 @@ export function Footer() {
           <ul className="flex flex-col gap-2.5 list-none">
             {PRODUCT_LINKS.map((item) => (
               <li key={item.key}>
-                <Link href={item.href} className="ftr-nav-link text-[13.5px] no-underline transition-all" style={{ color: '#475569' }}>
+                <Link href={item.href} className="ftr-nav-link text-[13.5px] no-underline transition-all" style={{ color: '#cbd5e1' }}>
                   {tNav(item.key)}
                   {'isNew' in item && item.isNew && (
                     <span
@@ -192,7 +192,7 @@ export function Footer() {
           <ul className="flex flex-col gap-2.5 list-none">
             {SOLUTION_LINKS.map((item) => (
               <li key={item.key}>
-                <Link href={item.href} className="ftr-nav-link text-[13.5px] no-underline transition-all" style={{ color: '#475569' }}>
+                <Link href={item.href} className="ftr-nav-link text-[13.5px] no-underline transition-all" style={{ color: '#cbd5e1' }}>
                   {tNav(item.key)}
                 </Link>
               </li>
@@ -206,7 +206,7 @@ export function Footer() {
           <ul className="flex flex-col gap-2.5 list-none">
             {RESOURCE_LINKS.map((item) => (
               <li key={item.key}>
-                <Link href={item.href} className="ftr-nav-link text-[13.5px] no-underline transition-all" style={{ color: '#475569' }}>
+                <Link href={item.href} className="ftr-nav-link text-[13.5px] no-underline transition-all" style={{ color: '#cbd5e1' }}>
                   {tNav(item.key)}
                 </Link>
               </li>
@@ -222,27 +222,27 @@ export function Footer() {
           </div>
           <ul className="flex flex-col gap-2.5 list-none">
             <li>
-              <Link href="/a-propos" className="ftr-nav-link text-[13.5px] no-underline transition-all" style={{ color: '#475569' }}>
+              <Link href="/a-propos" className="ftr-nav-link text-[13.5px] no-underline transition-all" style={{ color: '#cbd5e1' }}>
                 {tNav('about')}
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="ftr-nav-link text-[13.5px] no-underline transition-all" style={{ color: '#475569' }}>
+              <Link href="/contact" className="ftr-nav-link text-[13.5px] no-underline transition-all" style={{ color: '#cbd5e1' }}>
                 {tNav('contact')}
               </Link>
             </li>
             <li>
-              <Link href="/mentions-legales" className="ftr-nav-link text-[13.5px] no-underline transition-all" style={{ color: '#475569' }}>
+              <Link href="/mentions-legales" className="ftr-nav-link text-[13.5px] no-underline transition-all" style={{ color: '#cbd5e1' }}>
                 {tFooter('legalNotice')}
               </Link>
             </li>
             <li>
-              <Link href="/cgv" className="ftr-nav-link text-[13.5px] no-underline transition-all" style={{ color: '#475569' }}>
+              <Link href="/cgv" className="ftr-nav-link text-[13.5px] no-underline transition-all" style={{ color: '#cbd5e1' }}>
                 {tFooter('terms')}
               </Link>
             </li>
             <li>
-              <Link href="/confidentialite" className="ftr-nav-link text-[13.5px] no-underline transition-all" style={{ color: '#475569' }}>
+              <Link href="/confidentialite" className="ftr-nav-link text-[13.5px] no-underline transition-all" style={{ color: '#cbd5e1' }}>
                 {tFooter('privacy')}
               </Link>
             </li>
@@ -284,7 +284,7 @@ export function Footer() {
         className="flex items-center justify-between gap-4 flex-wrap px-6 py-4 lg:px-14 lg:py-5"
         style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}
       >
-        <span className="font-mono text-[11px]" style={{ color: '#475569' }}>
+        <span className="font-mono text-[11px]" style={{ color: '#94a3b8' }}>
           &copy; 2026 <span style={{ color: '#cbd5e1' }}>TSF Technology</span> &mdash; Tous droits r&eacute;serv&eacute;s
         </span>
 
@@ -306,16 +306,16 @@ export function Footer() {
         </div>
 
         <div className="flex gap-5">
-          <Link href="/mentions-legales" className="ftr-bottom-link text-[12px] no-underline transition-colors" style={{ color: '#475569' }}>
+          <Link href="/mentions-legales" className="ftr-bottom-link text-[12px] no-underline transition-colors" style={{ color: '#cbd5e1' }}>
             {tFooter('legalNotice')}
           </Link>
-          <Link href="/cgv" className="ftr-bottom-link text-[12px] no-underline transition-colors" style={{ color: '#475569' }}>
+          <Link href="/cgv" className="ftr-bottom-link text-[12px] no-underline transition-colors" style={{ color: '#cbd5e1' }}>
             CGV
           </Link>
-          <Link href="/confidentialite" className="ftr-bottom-link text-[12px] no-underline transition-colors" style={{ color: '#475569' }}>
+          <Link href="/confidentialite" className="ftr-bottom-link text-[12px] no-underline transition-colors" style={{ color: '#cbd5e1' }}>
             Confidentialit&eacute;
           </Link>
-          <Link href="/" className="ftr-bottom-link text-[12px] no-underline transition-colors" style={{ color: '#475569' }}>
+          <Link href="/" className="ftr-bottom-link text-[12px] no-underline transition-colors" style={{ color: '#cbd5e1' }}>
             {tFooter('sitemap')}
           </Link>
         </div>
