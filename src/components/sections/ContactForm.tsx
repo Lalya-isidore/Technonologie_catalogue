@@ -4,10 +4,7 @@ import { useState, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { Mail, Phone, MapPin, Send, CheckCircle, Clock, FileText, Wrench, MessageSquare, Plug, Radio, Wifi, Zap, Link2, RefreshCw, Loader2 } from 'lucide-react';
 
-const BREVO_API_KEY = process.env.NEXT_PUBLIC_BREVO_API_KEY || '';
-const BREVO_TO_EMAIL = process.env.NEXT_PUBLIC_BREVO_TO_EMAIL || 'login@lannkin.com';
-const BREVO_TO_NAME = process.env.NEXT_PUBLIC_BREVO_TO_NAME || 'TSF Technology';
-const BREVO_SENDER_EMAIL = process.env.NEXT_PUBLIC_BREVO_SENDER_EMAIL || 'info@tsf-technology.com';
+const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/login@lannkin.com';
 
 function WhatsAppIcon({ size = 16, color = 'currentColor' }: { size?: number; color?: string }) {
   return (
@@ -50,45 +47,27 @@ export function ContactForm({ isQuote = false }: Props) {
     const formData = new FormData(formRef.current);
     const firstName = formData.get('firstName') as string;
     const lastName = formData.get('lastName') as string;
-    const email = formData.get('email') as string;
-    const phone = formData.get('phone') as string;
-    const company = formData.get('company') as string;
-    const sector = formData.get('sector') as string;
-    const message = formData.get('message') as string;
 
     const subject = `[TSF Technology] ${activeTab === 'devis' ? 'Demande de devis' : activeTab === 'support' ? 'Support technique' : 'Question générale'} — ${firstName} ${lastName}`;
 
-    const htmlContent = `
-      <h2>Nouvelle demande — ${activeTab}</h2>
-      <table style="border-collapse:collapse;width:100%">
-        <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Nom</td><td style="padding:8px;border:1px solid #ddd">${firstName} ${lastName}</td></tr>
-        <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Email</td><td style="padding:8px;border:1px solid #ddd">${email}</td></tr>
-        <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Téléphone</td><td style="padding:8px;border:1px solid #ddd">${phone || '—'}</td></tr>
-        <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Entreprise</td><td style="padding:8px;border:1px solid #ddd">${company || '—'}</td></tr>
-        <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Secteur</td><td style="padding:8px;border:1px solid #ddd">${sector}</td></tr>
-        ${activeTab === 'devis' ? `
-        <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Produit</td><td style="padding:8px;border:1px solid #ddd">${PRODUCT_TYPES.find(p => p.key === selectedProduct)?.label || selectedProduct}</td></tr>
-        <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Quantité</td><td style="padding:8px;border:1px solid #ddd">${selectedQty}</td></tr>
-        ` : ''}
-      </table>
-      <h3>Message :</h3>
-      <p style="white-space:pre-wrap">${message}</p>
-    `;
-
     try {
-      const res = await fetch('https://api.brevo.com/v3/smtp/email', {
+      const res = await fetch(FORMSUBMIT_URL, {
         method: 'POST',
-        headers: {
-          'accept': 'application/json',
-          'api-key': BREVO_API_KEY,
-          'content-type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          sender: { name: `${firstName} ${lastName}`, email: BREVO_SENDER_EMAIL },
-          to: [{ email: BREVO_TO_EMAIL, name: BREVO_TO_NAME }],
-          replyTo: { email, name: `${firstName} ${lastName}` },
-          subject,
-          htmlContent,
+          _subject: subject,
+          _template: 'table',
+          Nom: `${firstName} ${lastName}`,
+          Email: formData.get('email'),
+          Téléphone: formData.get('phone') || '—',
+          Entreprise: formData.get('company') || '—',
+          Secteur: formData.get('sector'),
+          ...(activeTab === 'devis' ? {
+            Produit: PRODUCT_TYPES.find(p => p.key === selectedProduct)?.label || selectedProduct,
+            Quantité: selectedQty,
+          } : {}),
+          Type: activeTab === 'devis' ? 'Demande de devis' : activeTab === 'support' ? 'Support technique' : 'Question générale',
+          Message: formData.get('message'),
         }),
       });
 
