@@ -16,6 +16,8 @@ const pathForAllLocales = (p: string) => ({ fr: p, en: p, es: p, it: p, ar: p, r
 interface CategoryConfig {
   layer: Product['layer'];
   seo: { title: string; description: string };
+  bannerImage?: string;
+  heroImages?: string[];
   landing: {
     [locale: string]: {
       title: string;
@@ -33,6 +35,8 @@ const CATEGORY_MAP: Record<string, CategoryConfig> = {
   'layer-3-din-rail': {
     layer: 'layer-3',
     seo: { title: 'Layer 3 Industrial DIN Rail Switches | TSF Technology', description: 'Industrial Layer 3 Ethernet switches for DIN Rail mounting. IP routing, OSPF, VRRP. IP40, -40°C to +75°C. CE/FCC/UL certified.' },
+    bannerImage: '/images/products/banner-switches.png',
+    heroImages: ['/images/products/product-din-rail.png', '/images/products/product-compact.png'],
     landing: {
       en: {
         title: 'Layer 3 DIN Rail Switches',
@@ -295,7 +299,8 @@ export default async function CategoryPage({ params }: Props) {
     products = products.filter((p) => p.mounting === 'rack-19');
   }
 
-  const landing = config.landing[locale] || config.landing['en'];
+  const landingBase = config.landing[locale] || config.landing['en'];
+  const landing = { ...landingBase, bannerImage: config.bannerImage, heroImages: config.heroImages };
 
   const categoryLinksData = getRelatedCategoryLinks(category, locale as Locale);
   const solutionLinksData = getRelatedSolutionLinks();

@@ -19,6 +19,8 @@ interface CategoryInfo {
   benefits: string[];
   stats: { value: string; label: string }[];
   useCases: string[];
+  bannerImage?: string;
+  heroImages?: string[];
 }
 
 type Props = {
@@ -201,6 +203,47 @@ export function CategoryLandingPage({ products, category, faqs, locale }: Props)
           ))}
         </div>
       </section>
+
+      {/* ═══════ BANNER IMAGE ═══════ */}
+      {category.bannerImage && (
+        <section style={{ padding: '0' }}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-10 py-8">
+            <div className="relative rounded-2xl overflow-hidden" style={{ border: '1px solid #e2e8f0', boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}>
+              <img
+                src={category.bannerImage}
+                alt={category.title}
+                className="w-full h-auto object-cover"
+                style={{ maxHeight: '400px' }}
+              />
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ═══════ HERO IMAGES (product showcase) ═══════ */}
+      {category.heroImages && category.heroImages.length > 0 && (
+        <section style={{ background: '#f8fafc', padding: '40px' }}>
+          <div className="max-w-7xl mx-auto">
+            <div className={`grid gap-6 ${category.heroImages.length === 1 ? 'grid-cols-1 max-w-2xl mx-auto' : 'grid-cols-1 sm:grid-cols-2'}`}>
+              {category.heroImages.map((img, i) => (
+                <div
+                  key={i}
+                  className="relative rounded-2xl overflow-hidden flex items-center justify-center"
+                  style={{ background: '#fff', border: '1px solid #e2e8f0', padding: '32px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}
+                >
+                  <img
+                    src={img}
+                    alt={`${category.title} - Product ${i + 1}`}
+                    className="w-full h-auto object-contain"
+                    style={{ maxHeight: '320px' }}
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ═══════ PRODUCTS GRID ═══════ */}
       <section style={{ padding: '48px 40px' }}>
