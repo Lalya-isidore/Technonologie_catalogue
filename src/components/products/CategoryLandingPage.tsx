@@ -52,7 +52,24 @@ export function CategoryLandingPage({ products, category, faqs, locale }: Props)
         className="relative overflow-hidden"
         style={{ background: '#0b1630', padding: '100px 40px 60px' }}
       >
-        {/* Circuit pattern */}
+        {/* Banner background image */}
+        {category.bannerImage && (
+          <>
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                backgroundImage: `url(${category.bannerImage})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+              }}
+            />
+            <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(11,22,48,0.75)' }} />
+          </>
+        )}
+
+        {/* Circuit pattern (fallback when no banner) */}
+        {!category.bannerImage && (
         <div className="absolute inset-0 pointer-events-none" style={{ opacity: 0.08 }}>
           <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -74,6 +91,7 @@ export function CategoryLandingPage({ products, category, faqs, locale }: Props)
             <rect width="100%" height="100%" fill="url(#lp-circuit)"/>
           </svg>
         </div>
+        )}
 
         {/* Gradient overlays */}
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 80% 60% at 20% 50%, rgba(29,78,216,0.2) 0%, transparent 70%)' }} />
@@ -203,22 +221,6 @@ export function CategoryLandingPage({ products, category, faqs, locale }: Props)
           ))}
         </div>
       </section>
-
-      {/* ═══════ BANNER IMAGE ═══════ */}
-      {category.bannerImage && (
-        <section style={{ padding: '0' }}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-10 py-8">
-            <div className="relative rounded-2xl overflow-hidden" style={{ border: '1px solid #e2e8f0', boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}>
-              <img
-                src={category.bannerImage}
-                alt={category.title}
-                className="w-full h-auto object-cover"
-                style={{ maxHeight: '400px' }}
-              />
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* ═══════ HERO IMAGES (product showcase) ═══════ */}
       {category.heroImages && category.heroImages.length > 0 && (
