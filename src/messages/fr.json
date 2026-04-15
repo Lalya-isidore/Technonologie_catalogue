@@ -80,7 +80,12 @@
     "filterBy": "Filtrer par",
     "sortBy": "Trier par",
     "all": "Tous",
-    "details": "Détails"
+    "details": "Détails",
+    "ctaTitle": "Besoin d'aide pour choisir le bon switch ?",
+    "ctaSubtitle": "Notre équipe technique vous aide à sélectionner la solution réseau industriel parfaite. Consultation gratuite, sans engagement.",
+    "ctaSubtitleShort": "Gratuit · Sans engagement",
+    "responseTime": "Temps de réponse moyen :",
+    "searchProduct": "Rechercher un produit..."
   },
   "trustBar": {
     "ip40": "Certifié IP40",

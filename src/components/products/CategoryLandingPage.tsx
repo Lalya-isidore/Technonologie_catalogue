@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import type { Product, Locale, FAQ } from '@/lib/types';
 import { ProductCard } from './ProductCard';
@@ -169,7 +169,7 @@ export function CategoryLandingPage({ products, category, faqs, locale }: Props)
               </div>
               <div>
                 <div className="text-[13px] font-bold text-white">{t('requestQuote')}</div>
-                <div className="text-[11px]" style={{ color: '#94a3b8' }}>Free &middot; No commitment</div>
+                <div className="text-[11px]" style={{ color: '#94a3b8' }}>{t('ctaSubtitleShort')}</div>
               </div>
             </div>
 
@@ -198,7 +198,7 @@ export function CategoryLandingPage({ products, category, faqs, locale }: Props)
 
             <div className="flex items-center justify-center gap-1.5 text-[11px]" style={{ color: '#94a3b8' }}>
               <Clock size={12} className="opacity-50" />
-              Average response time: <strong className="text-white ml-0.5">{'<'}24h</strong>
+              {t('responseTime')} <strong className="text-white ml-0.5">{'<'}24h</strong>
             </div>
           </div>
         </div>
@@ -257,14 +257,14 @@ export function CategoryLandingPage({ products, category, faqs, locale }: Props)
                 {category.title}
               </h2>
               <p className="text-[14px]" style={{ color: '#64748b' }}>
-                {filtered.length} products available — Industrial grade, certified
+                {filtered.length} {t('results')} — {t('applications')}
               </p>
             </div>
             <div className="relative">
               <Search size={14} style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }} />
               <input
                 type="text" value={search} onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search product..."
+                placeholder={t('searchProduct')}
                 style={{ padding: '9px 14px 9px 34px', border: '1px solid #e2e8f0', borderRadius: 8, fontSize: 13, fontFamily: 'inherit', color: '#0f172a', outline: 'none', width: 220 }}
               />
             </div>
@@ -289,7 +289,7 @@ export function CategoryLandingPage({ products, category, faqs, locale }: Props)
       <section style={{ background: '#f8fafc', padding: '56px 40px' }}>
         <div className="max-w-7xl mx-auto">
           <h2 className="text-[24px] font-extrabold mb-8" style={{ color: '#0f2257' }}>
-            Typical Applications
+            {t('applications')}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {category.useCases.map((useCase) => (
@@ -314,10 +314,10 @@ export function CategoryLandingPage({ products, category, faqs, locale }: Props)
         }} />
         <div className="relative z-[2] max-w-4xl mx-auto text-center">
           <h2 className="text-[28px] font-extrabold text-white mb-4">
-            Need Help Choosing the Right Switch?
+            {t('ctaTitle')}
           </h2>
           <p className="text-[15px] mb-8 max-w-lg mx-auto" style={{ color: '#94a3b8' }}>
-            Our technical team will help you select the perfect industrial networking solution for your requirements. Free consultation, no commitment.
+            {t('ctaSubtitle')}
           </p>
           <div className="flex justify-center gap-4 flex-wrap">
             <Link
@@ -325,14 +325,14 @@ export function CategoryLandingPage({ products, category, faqs, locale }: Props)
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-[15px] font-bold text-white no-underline transition-all hover:-translate-y-0.5"
               style={{ background: '#f97316' }}
             >
-              Get a Free Quote <ArrowRight size={16} />
+              {t('requestQuote')} <ArrowRight size={16} />
             </Link>
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-[15px] font-semibold no-underline transition-all hover:-translate-y-0.5"
               style={{ background: 'rgba(255,255,255,0.06)', color: '#fff', border: '1px solid rgba(255,255,255,0.15)' }}
             >
-              Contact an Expert
+              {t('contactUs')}
             </Link>
           </div>
         </div>
@@ -347,7 +347,7 @@ export function CategoryLandingPage({ products, category, faqs, locale }: Props)
                 <HelpCircle size={12} /> FAQ
               </span>
               <h2 className="text-[24px] font-bold" style={{ color: '#0f172a' }}>
-                Frequently Asked Questions
+                {t('faq')}
               </h2>
             </div>
             <div className="space-y-3">

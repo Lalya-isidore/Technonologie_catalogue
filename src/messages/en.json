@@ -80,7 +80,12 @@
     "filterBy": "Filter by",
     "sortBy": "Sort by",
     "all": "All",
-    "details": "Details"
+    "details": "Details",
+    "ctaTitle": "Need Help Choosing the Right Switch?",
+    "ctaSubtitle": "Our technical team will help you select the perfect industrial networking solution for your requirements. Free consultation, no commitment.",
+    "ctaSubtitleShort": "Free · No commitment",
+    "responseTime": "Average response time:",
+    "searchProduct": "Search product..."
   },
   "trustBar": {
     "ip40": "IP40 Certified",

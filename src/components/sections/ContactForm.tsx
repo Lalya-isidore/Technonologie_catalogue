@@ -4,7 +4,6 @@ import { useState, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { Mail, Phone, MapPin, Send, CheckCircle, Clock, FileText, Wrench, MessageSquare, Plug, Radio, Wifi, Zap, Link2, RefreshCw, Loader2 } from 'lucide-react';
 
-const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/login@lannkin.com';
 
 function WhatsAppIcon({ size = 16, color = 'currentColor' }: { size?: number; color?: string }) {
   return (
@@ -50,13 +49,18 @@ export function ContactForm({ isQuote = false }: Props) {
 
     const subject = `[TSF Technology] ${activeTab === 'devis' ? 'Demande de devis' : activeTab === 'support' ? 'Support technique' : 'Question générale'} — ${firstName} ${lastName}`;
 
+    let utmData: Record<string, string> = {};
     try {
-      const res = await fetch(FORMSUBMIT_URL, {
+      const raw = sessionStorage.getItem('tsf_utm');
+      if (raw) utmData = JSON.parse(raw);
+    } catch {}
+
+    try {
+      const res = await fetch('https://tsf-mailer.albert-lanne.workers.dev', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
           _subject: subject,
-          _template: 'table',
           Nom: `${firstName} ${lastName}`,
           Email: formData.get('email'),
           Téléphone: formData.get('phone') || '—',
@@ -68,10 +72,18 @@ export function ContactForm({ isQuote = false }: Props) {
           } : {}),
           Type: activeTab === 'devis' ? 'Demande de devis' : activeTab === 'support' ? 'Support technique' : 'Question générale',
           Message: formData.get('message'),
+          ...(Object.keys(utmData).length > 0 ? { UTM: JSON.stringify(utmData) } : {}),
         }),
       });
 
       if (!res.ok) throw new Error('Erreur envoi');
+
+      // Google Ads conversion tracking
+      const gadsId = process.env.NEXT_PUBLIC_GADS_CONVERSION_ID;
+      if (gadsId && typeof window !== 'undefined' && (window as Window & { gtag?: (...args: unknown[]) => void }).gtag) {
+        (window as Window & { gtag: (...args: unknown[]) => void }).gtag('event', 'conversion', { send_to: gadsId });
+      }
+
       setSubmitted(true);
     } catch {
       setError('Une erreur est survenue. Veuillez réessayer ou nous contacter par WhatsApp.');

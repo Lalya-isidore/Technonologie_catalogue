@@ -70,7 +70,7 @@ export function ProductDetail({ product }: Props) {
 
       {/* ── STICKY PRODUCT NAV ── */}
       <div style={{
-        position: 'sticky', top: 62, zIndex: 99, background: '#fff',
+        position: 'sticky', top: 96, zIndex: 99, background: '#fff',
         borderBottom: '1px solid #e2e8f0', padding: '0 40px',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       }}>
@@ -94,17 +94,6 @@ export function ProductDetail({ product }: Props) {
             );
           })}
         </div>
-        <Link
-          href="/demande-de-devis"
-          className="hidden sm:inline-flex"
-          style={{
-            background: '#f97316', color: '#fff', border: 'none',
-            padding: '8px 18px', borderRadius: 5, fontSize: 12,
-            fontWeight: 700, textDecoration: 'none',
-          }}
-        >
-          {t('requestQuote')} →
-        </Link>
       </div>
 
       {/* ── PRODUCT HERO ── */}

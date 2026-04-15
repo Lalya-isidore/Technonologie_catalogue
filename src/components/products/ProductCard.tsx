@@ -4,6 +4,7 @@ import { Link } from '@/i18n/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import type { Product } from '@/lib/types';
 import type { Locale } from '@/lib/types';
+import { useWishlist } from '@/hooks/useWishlist';
 
 import { Gauge, LayoutGrid, Shield, Thermometer, GitCompare, Heart, ArrowRight } from 'lucide-react';
 
@@ -15,6 +16,8 @@ type Props = {
 export function ProductCard({ product, index = 0 }: Props) {
   const locale = useLocale() as Locale;
   const t = useTranslations('common');
+  const { toggle, has } = useWishlist();
+  const wishlisted = has(product.sku);
 
   return (
     <Link
@@ -40,7 +43,7 @@ export function ProductCard({ product, index = 0 }: Props) {
               className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-bold text-white rounded-md"
               style={{ background: '#ea580c' }}
             >
-              \u2605 {t('bestseller')}
+              {'\u2605'} {t('bestseller')}
             </span>
           )}
           {product.isNew && !product.isBestseller && (
@@ -134,12 +137,19 @@ export function ProductCard({ product, index = 0 }: Props) {
             >
               <GitCompare size={13} />
             </span>
-            <span
-              className="w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
-              style={{ border: '1px solid #e2e8f0', color: '#94a3b8' }}
+            <button
+              type="button"
+              onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggle(product.sku); }}
+              className="w-8 h-8 rounded-lg flex items-center justify-center transition-all"
+              style={{
+                border: wishlisted ? '1px solid #f87171' : '1px solid #e2e8f0',
+                background: wishlisted ? '#fff1f2' : 'transparent',
+                color: wishlisted ? '#ef4444' : '#94a3b8',
+              }}
+              aria-label={wishlisted ? 'Retirer des favoris' : 'Ajouter aux favoris'}
             >
-              <Heart size={13} />
-            </span>
+              <Heart size={13} fill={wishlisted ? '#ef4444' : 'none'} />
+            </button>
             <span
               className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-[11.5px] font-semibold text-white transition-all"
               style={{ background: '#1d4ed8' }}

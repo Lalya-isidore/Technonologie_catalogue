@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
+import { LpHeader } from '@/components/ads/LpHeader';
 import {
   Menu, X, ChevronDown, Phone, Mail, Globe,
   Monitor, Zap, Cpu, Wifi, ArrowRight,
@@ -97,6 +98,8 @@ export function Header() {
   }, []);
 
   useEffect(() => { setMobileOpen(false); }, [pathname]);
+
+  if (pathname.includes('/lp/')) return <LpHeader />;
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50" role="banner">

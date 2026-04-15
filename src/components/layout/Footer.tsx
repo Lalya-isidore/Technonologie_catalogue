@@ -1,9 +1,13 @@
+'use client';
+
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
 import {
   Shield, Thermometer, Award, Headphones, Briefcase,
   Mail, Phone, MapPin, ArrowRight,
 } from 'lucide-react';
+import { LpFooter } from '@/components/ads/LpFooter';
 
 const PRODUCT_LINKS = [
   { key: 'layer3DinRail', href: '/produits/switches-ethernet/layer-3-din-rail' },
@@ -39,8 +43,11 @@ const BAND_ITEMS = [
 ] as const;
 
 export function Footer() {
+  const pathname = usePathname();
   const tNav = useTranslations('nav');
   const tFooter = useTranslations('footer');
+
+  if (pathname.includes('/lp/')) return <LpFooter />;
 
   return (
     <footer role="contentinfo" aria-label="Pied de page" className="relative overflow-hidden" style={{ background: '#060c1a', borderTop: '1px solid rgba(255,255,255,0.07)' }}>

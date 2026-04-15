@@ -7,6 +7,7 @@ import { getProductImages } from '@/data/product-images';
 import { Link } from '@/i18n/navigation';
 import Image from 'next/image';
 import type { Product, Locale } from '@/lib/types';
+import { useWishlist } from '@/hooks/useWishlist';
 
 import {
   Gauge, LayoutGrid, Shield, Thermometer,
@@ -82,6 +83,8 @@ function FeaturedCard({ product, index }: { product: Product; index: number }) {
   const locale = useLocale() as Locale;
   const t = useTranslations('common');
   const images = getProductImages(product.sku);
+  const { toggle, has } = useWishlist();
+  const wishlisted = has(product.sku);
 
   return (
     <Link
@@ -188,9 +191,19 @@ function FeaturedCard({ product, index }: { product: Product; index: number }) {
             <span className="w-8 h-8 rounded-lg flex items-center justify-center transition-colors" style={{ border: '1px solid #e2e8f0', color: '#94a3b8' }}>
               <GitCompare size={13} />
             </span>
-            <span className="w-8 h-8 rounded-lg flex items-center justify-center transition-colors" style={{ border: '1px solid #e2e8f0', color: '#94a3b8' }}>
-              <Heart size={13} />
-            </span>
+            <button
+              type="button"
+              onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggle(product.sku); }}
+              className="w-8 h-8 rounded-lg flex items-center justify-center transition-all"
+              style={{
+                border: wishlisted ? '1px solid #f87171' : '1px solid #e2e8f0',
+                background: wishlisted ? '#fff1f2' : 'transparent',
+                color: wishlisted ? '#ef4444' : '#94a3b8',
+              }}
+              aria-label={wishlisted ? 'Retirer des favoris' : 'Ajouter aux favoris'}
+            >
+              <Heart size={13} fill={wishlisted ? '#ef4444' : 'none'} />
+            </button>
             <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-[11.5px] font-semibold text-white transition-all" style={{ background: '#1d4ed8' }}>
               {t('details')} <ArrowRight size={12} />
             </span>
